@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 06 okt 2017 kl 09:35
+-- Tid vid skapande: 06 okt 2017 kl 09:53
 -- Serverversion: 10.1.19-MariaDB
 -- PHP-version: 7.0.13
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Databas: `trälleborg`
 --
+CREATE DATABASE IF NOT EXISTS `trälleborg` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `trälleborg`;
 
 -- --------------------------------------------------------
 
@@ -49,7 +51,8 @@ INSERT INTO `books` (`id`, `title`, `ISBN`, `author`, `category`, `release_date`
 (4, 'Harry Potter and the Prisoner of Azkaban', '0-7475-4215-5', 'J. K. Rowling', 'Fantasy', '1999-07-08', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
 (5, 'Harry Potter and the Goblet of Fire', '0-7475-4624-X', 'J. K. Rowling', 'Fantasy', '2000-07-08', 2, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
 (6, 'Harry Potter and the Order of the Phoenix', '0-7475-5100-6', 'J. K. Rowling', 'Fantasy', '2003-06-21', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(7, 'Harry Potter and the Half-Blood Prince', '0-7475-8108-8', 'J. K. Rowling', 'Fantasy', '2005-07-16', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English');
+(7, 'Harry Potter and the Half-Blood Prince', '0-7475-8108-8', 'J. K. Rowling', 'Fantasy', '2005-07-16', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
+(8, 'Harry Potter and the Deathly Hallows', '0-545-01022-5', 'J. K. Rowling', 'Fantasy', '2007-07-21', NULL, 'Bloomsbury', 'English');
 
 -- --------------------------------------------------------
 
@@ -71,7 +74,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `telephone`) VALUES
 (2, 'Simon Svensson', 'nope@nope.com', '0706334793'),
 (3, 'Awesome Simon', 'gmail@gmail.com', '0703667523'),
-(4, 'Erik Eriksson', 'erik.eriksson@gmail.com', '123123456');
+(4, 'Erik Eriksson', 'erik.eriksson@gmail.com', '123123456'),
+(5, 'Marcus Linné', 'marcus.linne@lund.ntig.se', '3548654723');
 
 --
 -- Index för dumpade tabeller
@@ -98,12 +102,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT för tabell `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT för tabell `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restriktioner för dumpade tabeller
 --
