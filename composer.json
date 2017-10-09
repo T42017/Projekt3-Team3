@@ -1,9 +1,6 @@
 {
     "require": {
-<<<<<<< Updated upstream
+        "symfony/finder": "^3.3",
         "twig/twig": "^2.0"
-=======
-        "twig/twig": "~2.0"
->>>>>>> Stashed changes
     }
 }
