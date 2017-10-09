@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,11 +7,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/projekt3/css/style.css">
       
   </head>
   <body>
-
 
     <div class="container">
         <div class="row" id="header">
@@ -45,7 +44,7 @@
         <div class="row" id="catalog">
             {% for book in books %}
             <div class="col-lg-4">
-                <img src="../img/index.png" class="img-responsive icons" alt="book image">
+                <img src="/projekt3/img/index.png" class="img-responsive icons" alt="book image">
                 <p class="title">{{ book.title }}</p>
                 <p class="author">{{ book.author }}</p>
                 <p class="genre">{{ book.category }}</p>
@@ -62,16 +61,14 @@
                   <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
             </div>
         </div>
+
         <div class="row" id="footer">
             <div class="col">
                 <p></p>
             </div>
         </div>
             
-    </div>
-      
-      
-      
+    </div>                
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
