@@ -1,0 +1,5 @@
+{% for b in books %}
+		* {{ b.title }} {{b.ISBN}} {{b.author}} {{b.category}} {{b.release_date}} {{b.publisher}} {{b.language}} <br/>
+{% else %}
+	No cities found! :(
+{% endfor %}
