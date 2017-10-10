@@ -36,15 +36,15 @@ body{
 }
 .title{
     margin: 1%;
-    font-size: 24px;
+    font-size: 20px;
 }
 .genre{
     font-size: 12px;
 }
 .author{
-    font-size: 12px;
-    margin-right: 5%;
+    font-size: 16px;
     float: left;
+    margin: auto;
 }
 .icons{
     margin-left: 0px;
