@@ -17,6 +17,7 @@
             $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
 
             try {
+                echo "w".isset($_POST['submit']);
                 if(isset($_POST['submit'])) {
 
                     $title = $_POST['title'];
