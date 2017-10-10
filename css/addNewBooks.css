@@ -30,33 +30,10 @@
 body{
     background-color: #CFF09E;
 }
-.genres{
-    padding-top: 1%;
-}
-.title{
-    margin: 1%;
-    font-size: 24px;
-}
-.genre{
-    font-size: 12px;
-}
-.author{
-    font-size: 12px;
-    margin-right: 5%;
-    float: left;
-}
-.icons{
-    margin-left: 0px;
-    float: left;
-}
 #next{
     float: none;
     margin: auto;
     width: 3%
-}
-#previous{
-    float: left;
-    margin:1%;
 }
 .catbuttons{
     float: left;
