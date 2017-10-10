@@ -1,5 +1,7 @@
 {
     "require": {
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "symfony/finder": "^3.3",
+        "twbs/bootstrap": "4.0.0-beta"
     }
 }
