@@ -33,7 +33,6 @@ body{
 #next{
     float: none;
     margin: auto;
-    margin-top: 1%;
     width: 3%
 }
 .catbuttons{
@@ -43,12 +42,8 @@ body{
 }
 .col-centered{
     margin: auto;
-    margin-top: 1.4%;
     width: 20%;
     min-width: 200px;
-}
-.text{
- margin-bottom: 0.2%;
 }
 .btn-outlined {
     -webkit-transition: all 0.3s;
