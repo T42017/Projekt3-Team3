@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/jquery-3.2.1.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="../js/popper.min.js"></script>
+    <script type="application/javascript" src="../js/jquery-3.2.1.js"></script>
+    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="../js/isbnSearch.js"></script>
     <title>Add new book</title>
+    <style>
+        body {
+            background: lightgreen;
+        }
+        
+        input {
+            display: inline-block;
+            margin: 5px 10px 20px 10px;
+            width: 300px;
+            height: 30px;
+        }
+        
+        button {
+            display: block;
+            margin-left: 125px;
+        }
+        
+        h1, h3 {
+            margin: 10px;
+        }
+        
+        #loadingGif {
+            display: none;
+        }
+        
+        #loadingImg {
+            width: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,143 +44,79 @@
     
     $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
     if (!$db) {
         echo "\nPDO::errorInfo():\n";
         print_r($dbh->errorInfo());
     }
     
     try {
-        if(isset($_POST['title']) && !empty($_POST['title']) &&
-          isset($_POST['ISBN']) && !empty($_POST['ISBN']) &&
-          isset($_POST['author']) && !empty($_POST['author']) &&
-          isset($_POST['category']) && !empty($_POST['category']) &&
-          isset($_POST['release_date']) && !empty($_POST['release_date']) &&
-          isset($_POST['publisher']) && !empty($_POST['publisher']) &&
-          isset($_POST['language']) && !empty($_POST['language'])) {
+        if(isset($_POST['submit'])) {
 
             $title = $_POST['title'];
-            $isbn = $_POST['ISBN'];
+            $isbn = str_replace("-", "", $_POST['ISBN']);
             $author = $_POST['author'];
             $category = $_POST['category'];
-            $release_date = $_POST['release_date'];
+            $release_year = $_POST['release_year'];
             $publisher = $_POST['publisher'];
             $language = $_POST['language'];
 
-            $stmt = $db->prepare("INSERT INTO books (title, ISBN, author, category, release_date, publisher, language) value (:title, :isbn, :author, :category, :release_date, :publisher, :language)");
+            $stmt = $db->prepare("INSERT INTO books (title, ISBN, author, category, release_year, publisher, language) 
+                                    value (:title, :isbn, :author, :category, :release_year, :publisher, :language)");
+            
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':isbn', $isbn);
             $stmt->bindParam(':author', $author);
             $stmt->bindParam(':category', $category);
-            $stmt->bindParam(':release_date', $release_date);
+            $stmt->bindParam(':release_year', $release_year);
             $stmt->bindParam(':publisher', $publisher);
             $stmt->bindParam(':language', $language);
             $stmt->execute();
 
             //print_r($stmt->fetch(PDO::FETCH_ASSOC));
 
-            echo '<h1>Book added<h1>';
+            echo '<h3>Book tillagd<h3>';
         }
     } catch (Exception $e) {
-        echo 'Exception -> ';
-        var_dump($e->getMessage());
+        $error = $e->getMessage();
+        if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
+            echo '<h3>En bok med samma ISBN finns redan';
+        } else {
+            echo 'Exception -> ';
+            echo $error;
+        }
     }
-    
     ?>
     
-    <script type="application/javascript">
-        $(document).ready(function () {
-            
-            $('#isbn').on('input propertychange paste',function(e){
-                var isbn = document.getElementById("isbn").value;
-                
-                if (isbn.includes("-") && false)
-                    isbn = isbn.replace(/-/g, "");
-                
-                if (!/^\d+$/.test(isbn) || (isbn.length < 10 || isbn.length > 13))
-                    return;
-                
-                checkISBN(isbn);
-            });
-            
-            function checkISBN(isbn) {
-                $.getJSON("http://libris.kb.se/xsearch?query=" + isbn + "&format=json", function(result){
-                    $.each(result, function(i, field){
-                        if (i != "xsearch")
-                            return;
-
-                        var title = "";
-                        var publisher = "";
-                        var language = "";
-                        var date = null;
-
-                        $.map(field.list, function(value, index) {
-                            if (!title && value.title) 
-                                title = value.title;
-
-                            if (!publisher && value.publisher)
-                                publisher = value.publisher;
-
-                            if (!language && value.language)
-                                language = value.language;
-                            
-                            if (!date && value.date) {
-                                var placeholder = value.date;
-                                if (placeholder.length > 4)
-                                    placeholder = placeholder.substring(placeholder.length - 4, placeholder.length);
-                                var d = new Date();
-                                d.setFullYear(placeholder, 0, 0);
-                                date = d;
-                            }
-                            
-                            if (title && language && publisher)
-                                return;
-                        });
-
-                        document.getElementById("title").value = title;
-                        document.getElementById("publisher").value = publisher;
-                        document.getElementById("language").value = language;
-                        if (date)
-                            document.getElementById("date").value = date;
-                    });
-                });
-            };
-        });
-    </script>
-    
     <form method="post">
-        <h3>ISBN</h3>
-        <input type="text" id="isbn" name="ISBN" required autofocus  minlength="10" maxlength="20" pattern="\d+">
+        <h3>ISBN (På baksidan av boken)</h3>
+        <input type="text" id="isbn" name="ISBN" minlength="10" maxlength="20" pattern="^[0-9\-]+$" required autofocus>
+        
+        <div id="loadingGif">
+            Searching info about book
+            <img id="loadingImg" src="../loading.gif"/>
+        </div>
         
         <h3>title</h3>
-        <input type="text" id="title" name="title" required minlength="4" maxlength="50">
+        <input type="text" name="title" minlength="4" maxlength="50" required>
         
         <h3>author</h3>
-        <input type="text" id="author" name="author" required minlength="4" maxlength="50">
+        <input type="text" id="author" name="author" maxlength="50">
         
-        <h3>category</h3>
+        <h3>categories</h3>
         <input type="text" id="category" name="category" maxlength="50">
         
-        <h3>release date</h3>
-        <input type="date" name="release_date">
+        <h3>release year</h3>
+        <input type="year" id="year" name="release_year" maxlength="4">
         
         <h3>publisher</h3>
-        <input type="text" id="publisher" name="publisher">
+        <input type="text" id="publisher" name="publisher" maxlength="50">
         
         <h3>language</h3>
-        <input type="text" id="language" name="language" required minlength="2" maxlength="50">
+        <input type="text" id="language" name="language" minlength="2" maxlength="50" required>
         
-        <input type="submit" name="submit">
+        <button type="submit" name="submit">Skicka</button>
     </form>
-    
-    <style>
-        input {
-            margin: 5px 10px 10px 10px;
-        }
-        
-        h3 {
-            margin: 10px;
-        }
-    </style>
 </body>
 
 </html>

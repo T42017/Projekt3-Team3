@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+      <script type="application/javascript" src="..\js\jquery-3.2.1.js"></script>
+    <script type="application/javascript" src="..\js\popper.min.js"></script>
+    <script type="application/javascript" src="..\js\bootstrap.min.js"></script>
+    <script type="application/javascript" src="..\js\isbnSearch.js"></script>
+    <link rel="stylesheet" type="text/css" href="..\css\addNewBooks.css">
+  </head>
+  <body>
+    <div class="container">
+        
+        <div id="header">
+            <div class="col">
+                <h1 class="text-center bold">Bibliotek</h1>  
+            </div>
+        </div>
+        
+        <form method="post">
+            <div class="col-xs-3 col-centered">
+                <label for="isbn" class="text">Bokens ISBN:</label>
+                <input type="text" class="form-control" name="ISBN" id="isbn">
+                
+                <div id="loadingGif">
+                    Searching info about book
+                    <img id="loadingImg" src="../loading.gif"/>
+                </div>
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="titel" class="text">Titel:</label>
+                <input type="text" class="form-control" name="title" id="title">
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="forfattare" class="text">Författare:</label>
+                <input type="text" class="form-control" name="author" id="author">
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="genre" class="text">Genre:</label>
+                <input type="text" class="form-control" name="category" id="category">
+            </div>
+                <div class="col-xs-3 col-centered">
+                <label for="utgivningsar" class="text">Utgivningsår:</label>
+                <input type="text" class="form-control" name="release_year" id="release_year">
+            </div>
+                <div class="col-xs-3 col-centered">
+                <label for="forlag" class="text">Förlag:</label>
+                <input type="text" class="form-control" name="publisher" id="publisher">
+            </div>
+                <div class="col-xs-3 col-centered">
+                <label for="sprok" class="text">Språk:</label>
+                <input type="text" class="form-control" name="language" id="language">
+            </div>
+            <div id="next">
+                <button type="submit" class="btn btn-default btn-sm">Lägg till</button>
+            </div>
+        </form>
+      </div>
+  </body>
+</html>

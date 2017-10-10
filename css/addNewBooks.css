@@ -3,6 +3,7 @@
     padding: 2%;
     border-style: solid;
     border-width: 1px;
+    margin-top: 5%;
 }
 #catalog{
     background-color: white;
@@ -12,6 +13,9 @@
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
+}
+#loadingGif {
+    display: none;
 }
 #footer{
     background-color: #0B486B;
@@ -48,7 +52,7 @@ body{
     min-width: 200px;
 }
 .text{
- margin-bottom: 0.2%;
+    margin-bottom: 0.2%;
 }
 .btn-outlined {
     -webkit-transition: all 0.3s;
