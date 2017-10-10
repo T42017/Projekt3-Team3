@@ -4,6 +4,9 @@
     border-style: solid;
     border-width: 1px;
 }
+.headertext{
+    font-size: 60px;
+}
 #catalog{
     background-color: white;
 }
@@ -62,7 +65,7 @@ body{
     margin:1%;
 }
 #buttontext{
-    font-size: 50px;
+    font-size: 40px;
 }
 .catbuttons{
     float: left;
@@ -71,7 +74,6 @@ body{
 }
 .adminbuttons{
     margin-top: 10%;
-    font-weight: bold;
     padding:1%;
     min-width: 35%;
 }
