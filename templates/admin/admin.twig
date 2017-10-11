@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -7,44 +7,39 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="..\css\lanaUtBocker.css">
+      
+    <link rel="stylesheet" href="/projekt3/css/adminstyle.css">
+    
   </head>
   <body>
-    <div class="container-fluid">
-        <div id="header">
+      <div class="container">
+      <div class="row" id="header">
+          <div class="col">
+                <h1 class="text-center bold headertext">Bibliotek</h1>
+          </div>
+      </div>
+          <div class="row filler" id="categories">
+              <div class="col filler">
+                  <p></p>
+              </div>
+          </div>
+        <div class="row">
             <div class="col">
-                <h1 class="text-center bold"> Bibliotek </h1>  
+             <p class="text-center"><a href="/projekt3/admin2/lanaut" class="btn btn-lg btn-outlined btn-primary adminbuttons" id="buttontext">Låna ut</a></p> 
+             <p class="text-center"><a href="/projekt3/admin2/addbook" class="btn btn-lg btn-outlined btn-primary adminbuttons" id="buttontext">Lägg till bok</a></p>
             </div>
-        </div> 
-        <div id="categories">
-            <p></p>
-        </div>
-        <div class="col-xs-3 col-centered">
-            <label for="isbn" class="text">Bokens ISBN:</label>
-            <input type="text" class="form-control" id="isbn">
-        </div>
-        <div class="col-xs-3 col-centered">
-            <label for="namn" class="text">Namn:</label>
-            <input type="text" class="form-control" id="namn">
-        </div>          
-        <div class="col-xs-3 col-centered">
-            <label for="email" class="text">Email:</label>
-            <input type="text" class="form-control" id="email">
-        </div>
-        <div class="col-xs-3 col-centered">
-            <label for="telefon" class="text">Telefon:</label>
-            <input type="text" class="form-control" id="telefon">
-        </div>
-        <div id="next">
-            <button type="button" class="btn btn-default btn-sm">Fortsätt</button>
-        </div>
-    </div>
-          
+            <div class="col">
+             <p class="text-center"><a href="/projekt3/admin2/lamnain" class="btn btn-lg btn-outlined btn-primary adminbuttons" id="buttontext">Lämna in</a></p>
+             <p class="text-center"><a href="/projekt3/admin2/tabort" class="btn btn-lg btn-outlined btn-primary adminbuttons"  id="buttontext">Ta bort bok</a></p>
+            </div>
+
+          </div>
+      </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-      
   </body>
 </html>
