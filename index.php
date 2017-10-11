@@ -2,7 +2,6 @@
 <html>
 	<head>
 	   <meta charset="UTF-8">
-        <title>hejsan</title>
 	</head>
 	<body>
     
@@ -15,9 +14,9 @@
         
         if ($file === "admin2") {
             $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             try {
-                echo "w".isset($_POST['submit']);
                 if(isset($_POST['submit'])) {
 
                     $title = $_POST['title'];
@@ -42,18 +41,15 @@
 
                     //print_r($stmt->fetch(PDO::FETCH_ASSOC));
 
-                    echo '<h3>Book tillagd<h3>';
+                    echo 'Book tillagd';
                 }
             } catch (Exception $e) {
                 $error = $e->getMessage();
                 if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
-                    echo '<h3>En bok med samma ISBN finns redan';
-                } else {
-                    echo 'Exception -> ';
-                    echo $error;
+                    $error = 'En bok med samma ISBN finns redan';
                 }
             }
-            echo $twig->render('admin/addNewBooks.twig', array());
+            echo $twig->render('admin/addNewBooks.twig', array('error' => isset($error) ? $error : ""));
         } else {
             $pdo = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
             $stmt = $pdo->query('SELECT * FROM books');

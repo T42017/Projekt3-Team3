@@ -5,35 +5,53 @@
     border-width: 1px;
     margin-top: 5%;
 }
+
 #catalog{
     background-color: white;
 }
+
 #categories{
     background-color: #79BD9A;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
 }
+
+input {
+    display: inline;
+}
+
+#error {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
 #loadingGif {
     display: none;
 }
+
 #loadingImg {
     width: 20px;
 }
+
 #footer{
     background-color: #0B486B;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
 }
+
 .controls{
     background-color: #A8DBA8;
     border-style: solid;
     border-width: 1px;
 }
+
 .bold{
     font-weight: bold;
 }
+
 body{
     background-color: #CFF09E;
 }
@@ -48,26 +66,31 @@ body{
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .col-centered{
     margin: auto;
     margin-top: 1.4%;
     width: 20%;
     min-width: 200px;
 }
+
 .text{
     margin-bottom: 0.2%;
 }
+
 .btn-outlined {
     -webkit-transition: all 0.3s;
        -moz-transition: all 0.3s;
             transition: all 0.3s;
 }
+
 .btn-outlined.btn-primary {
     background: none;
     border: 1px solid;
     border-color: black;
     color: black;
 }
+
 .btn-outlined.btn-primary:hover,
 .btn-outlined.btn-primary:active {
     color: #FFF;
