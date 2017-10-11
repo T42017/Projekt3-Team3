@@ -1,0 +1,13 @@
+{
+    "require": {
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+        "twig/twig": "^2.0"
+=======
+        "twig/twig": "~2.0"
+>>>>>>> Stashed changes
+=======
+        "twig/twig": "^2.0",
+>>>>>>> feature-Add_Books_As_Admin
+    }
+}
