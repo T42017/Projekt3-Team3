@@ -44,14 +44,15 @@
         <div class="row" id="catalog">
             {% for book in books %}
             <div class="col-lg-4">
-                <img src="/projekt3/img/index.png" class="img-responsive icons" alt="book image">
+                <a href="/projekt3/bookinfo/{{ book.ISBN }}">
+                    <img src="/projekt3/img/index.png" class="img-responsive icons" alt="book image">
+                </a>
                 <p class="title">{{ book.title }}</p>
                 <p class="author">{{ book.author }}</p><br>
                 <p class="genre">{{ book.category }}</p>
             </div>
             {% endfor %}     
             </div>
-
         <div class="row controls">
             <div class="col">
                   <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>

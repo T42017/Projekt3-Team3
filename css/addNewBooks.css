@@ -17,13 +17,18 @@
     border-width: 1px;
 }
 
-input {
-    display: inline;
+.error {
+    color: red;
 }
 
-#error {
+.success {
+    color: green;
+}
+
+#info {
     display: block;
     margin: auto;
+    margin-top: 10px;
     text-align: center;
 }
 
