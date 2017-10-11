@@ -1,6 +1,5 @@
 $(document).ready(function () {
     $('#isbn').on('input propertychange paste',function(e){
-        alert("hejsan");
         var isbn = document.getElementById("isbn").value.replace(/-/g, "");
         
         if (!/^\d+$/.test(isbn) || (isbn.length < 10 || isbn.length > 13))
