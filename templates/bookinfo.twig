@@ -33,16 +33,19 @@
                   </div>
                 </form>
         </div>
-        <div class="row"> 
+        <div class="row controls"> 
                 <div class="col-lg-4">
-                    <img src="../img/harry.jpg" class="img-responsive" alt="book image">
+                    <img src="../img/harry.jpg" class="img-responsive images" alt="book image">
                 </div>
                 <div class="col-lg-4">
                     <p class="title">{{ book.title }}</p>
-                    <p class="author">{{ book.author }}</p><br>
+                    <p class="author">{{ book.author }}</p>
+                    <p class="author">Släpptes: {{ book.releasedate }}</p>
+                    <p class="author">Språk: {{ book.language }}</p>
                 </div>
                 <div class="col-lg-4">
-                    <p class="genre">Categories: {{ book.category }}</p>
+                    <p class="genre">Kategorier: {{ book.category }}</p>
+                    <p class="genre">ISBN: {{ book.ISBN }}</p>
                 </div>
             
 
