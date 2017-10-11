@@ -63,7 +63,7 @@
             }
         } else {
             $pdo = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
-            $stmt = $pdo->query('SELECT * FROM books');
+            $stmt = $pdo->query('SELECT * FROM books LIMIT 18');
 
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
                 $book[] = array(

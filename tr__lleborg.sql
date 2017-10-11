@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 11 okt 2017 kl 10:26
+-- Tid vid skapande: 11 okt 2017 kl 14:07
 -- Serverversion: 10.1.19-MariaDB
 -- PHP-version: 7.0.13
 
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `books`;
 CREATE TABLE `books` (
   `id` int(11) NOT NULL,
   `title` varchar(50) NOT NULL,
-  `ISBN` varchar(20) NOT NULL,
+  `ISBN` varchar(13) NOT NULL,
   `author` varchar(50) NOT NULL,
   `category` varchar(100) NOT NULL,
   `release_year` varchar(4) NOT NULL,
@@ -46,21 +46,35 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `ISBN`, `author`, `category`, `release_year`, `user_id`, `publisher`, `language`) VALUES
-(1, 'Star Wars Forces of Destiny', '978-1-56619-909-4', 'Jennifer Muro', 'Science fiction,\r\nAction/Adventure,\r\nAnthology,', '2017', 2, 'Carrie Beck Dave Filoni', 'English'),
-(2, 'Harry Potter and the Philosopher''s Stone', '1746382947341', 'J. K. Rowling', 'Fantasy, Drama, Mystery, Thriller', '1997', NULL, 'Bloomsbury Publishing (UK), Scholastic (US)', 'English'),
-(3, 'Harry Potter and the Chamber of Secrets', '0-7475-3849-2', 'J. K. Rowling', 'Fantasy', '1998', 3, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(4, 'Harry Potter and the Prisoner of Azkaban', '0-7475-4215-5', 'J. K. Rowling', 'Fantasy', '1999', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(5, 'Harry Potter and the Goblet of Fire', '0-7475-4624-X', 'J. K. Rowling', 'Fantasy', '2000', 2, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(6, 'Harry Potter and the Order of the Phoenix', '0-7475-5100-6', 'J. K. Rowling', 'Fantasy', '2003', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(7, 'Harry Potter and the Half-Blood Prince', '0-7475-8108-8', 'J. K. Rowling', 'Fantasy', '2005', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'English'),
-(8, 'Harry Potter and the Deathly Hallows', '0-545-01022-5', 'J. K. Rowling', 'Fantasy', '2007', NULL, 'Bloomsbury', 'English'),
-(36, 'En dtestpost', '1234567890', 'Gunelius, Susan M.', '', '2000', NULL, 'Huddinge : Förf', 'swe'),
-(37, 'Hästen och hans pojke', '978-91-638-8793-2', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(38, 'Häxan och lejonet', '978-91-638-8790-1', 'Lewis, C. S. (Clive Staples)', 'Fantasy, äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(39, 'Caspian, prins av Narnia', '978-91-638-8792-5', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(40, 'Kung Caspian och skeppet Gryningen', '978-91-638-8791-8', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(41, 'Minecraft', '978-91-1-304372-2', 'Daniel Goldberg, Linus Larsson', 'Biografi', '2012', NULL, 'Norstedt', 'Svenska'),
-(42, 'The Da Vinci code', '0-552-14951-9', 'Dan Brown', 'Mystery, Thriller, Deckare', '2004', NULL, 'Corgi', 'English');
+(1, 'Star Wars Forces of Destiny', '9781566199094', 'Jennifer Muro', 'Science fiction, Action/Äventyr, Anthology', '2017', 2, 'Carrie Beck Dave Filoni', 'Engelska'),
+(2, 'Harry Potter and the Philosopher''s Stone', '1746382947341', 'J. K. Rowling', 'Fantasy, Drama, Mysterie, Thriller', '1997', NULL, 'Bloomsbury Publishing (UK), Scholastic (US)', 'Engelska'),
+(3, 'Harry Potter and the Chamber of Secrets', '0747538492', 'J. K. Rowling', 'Fantasy', '1998', 3, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
+(4, 'Harry Potter and the Prisoner of Azkaban', '0747542155', 'J. K. Rowling', 'Fantasy', '1999', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
+(5, 'Harry Potter and the Goblet of Fire', '074754624X', 'J. K. Rowling', 'Fantasy', '2000', 2, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
+(6, 'Harry Potter and the Order of the Phoenix', '0747551006', 'J. K. Rowling', 'Fantasy', '2003', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
+(7, 'Harry Potter and the Half-Blood Prince', '0747581088', 'J. K. Rowling', 'Fantasy', '2005', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
+(8, 'Harry Potter and the Deathly Hallows', '0545010225', 'J. K. Rowling', 'Fantasy', '2007', NULL, 'Bloomsbury', 'Engelska'),
+(37, 'Hästen och hans pojke', '9789163887932', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
+(38, 'Häxan och lejonet', '9789163887901', 'Lewis, C. S. (Clive Staples)', 'Fantasy, äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
+(39, 'Caspian, prins av Narnia', '9789163887925', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
+(40, 'Kung Caspian och skeppet Gryningen', '9789163887918', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
+(41, 'Minecraft', '9789113043722', 'Daniel Goldberg, Linus Larsson', 'Biografi', '2012', NULL, 'Norstedt', 'Svenska'),
+(42, 'The Da Vinci code', '0552149519', 'Dan Brown', 'Mysterie, Thriller, Deckare', '2004', NULL, 'Corgi', 'Engelska'),
+(43, 'Jag är Zlatan Ibrahimović ', '9789100126537', 'Zlatan Ibrahimovic, David Lagercrantz', 'Biografi', '2011', NULL, 'Bonnier', 'Svenska'),
+(44, 'Sveriges historia 1600-1721', '9789113024400', 'Nils Erik Villstrand', 'Historia', '2011', NULL, 'Norstedt', 'Svenska'),
+(45, 'Processen', '9789174996203', 'Franz Kafka', 'Roman, Expressionism', '2014', NULL, 'Modernista', 'Svenska'),
+(46, 'The ruins of Gorlan', '9780142406632', 'John Flanagan', 'Fantasy, Äventyr', '2006', NULL, 'Corgi Yearling', 'Engelska'),
+(47, 'The Burning Bridge', '9780440867395', 'John Flanagan', 'Fantasy, Äventyr', '2007', NULL, 'Corgi Yearling', 'Engelska'),
+(48, 'The Icebound Land', '9780440867401', 'John Flanagan', 'Fantasy, Äventyr', '2008', NULL, 'Corgi Yearling', 'Engelska'),
+(49, 'Oakleaf bearers', '9780440867418', 'John Flanagan', 'Fantasy, Äventyr', '2008', NULL, 'Corgi Yearling', 'Engelska'),
+(50, 'The sorcerer in the north', '9780440869054', 'John Flanagan', 'Fantasy, Äventyr', '2009', NULL, 'Corgi Yearling', 'Engelska'),
+(51, 'The Siege of Macindaw', '9780440869078', 'John Flanagan', 'Fantasy, Äventyr', '2010', NULL, 'Corgi Yearling', 'Engelska'),
+(52, 'Erak''s ransom', '9780440869733', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
+(53, 'The Kings of Clonmel', '9780440869825', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
+(54, 'Halt''s peril', '9780440869832', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
+(55, 'The emperor of Nihon-Ja', '9780440869849', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
+(56, 'The Lost Stories', '9780440869931', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
+(57, 'The Royal Ranger', '9780440869948', 'John Flanagan', 'Fantasy, Äventyr', '2013', NULL, 'Corgi Yearling', 'Engelska');
 
 -- --------------------------------------------------------
 
@@ -112,7 +126,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT för tabell `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT för tabell `users`
 --
