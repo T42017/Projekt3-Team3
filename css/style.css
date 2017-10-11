@@ -25,6 +25,11 @@
     border-style: solid;
     border-width: 1px;
 }
+.fourofour{
+    font-size: 80px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
 .bold{
     font-weight: bold;
 }
@@ -62,6 +67,10 @@ body{
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+}
+.errortext{
+    margin-bottom: 5%;
+    font-size: 24px;
 }
 
 .btn-outlined {
