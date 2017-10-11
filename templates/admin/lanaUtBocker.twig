@@ -19,25 +19,31 @@
         <div id="categories">
             <p></p>
         </div>
-        <div class="col-xs-3 col-centered">
-            <label for="isbn">Bokens ISBN:</label>
-            <input type="text" class="form-control" id="isbn">
-        </div>
-        <div class="col-xs-3 col-centered">
-            <label for="namn">Namn:</label>
-            <input type="text" class="form-control" id="namn">
-        </div>          
-        <div class="col-xs-3 col-centered">
-            <label for="email">Email:</label>
-            <input type="text" class="form-control" id="email">
-        </div>
-        <div class="col-xs-3 col-centered">
-            <label for="telefon">Telefon:</label>
-            <input type="text" class="form-control" id="telefon">
-        </div>
-        <div id="next">
-            <button type="button" class="btn btn-default btn-sm">Nästa</button>
-        </div>
+        
+        <h3 id="info" class="success">{{ info }}</h3>
+        <h3 id="info" class="error">{{ error }}</h3>
+        
+        <form method="post">
+            <div class="col-xs-3 col-centered">
+                <label for="isbn">Bokens ISBN:</label>
+                <input type="text" name="ISBN" class="form-control" id="ISBN">
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="namn">Namn:</label>
+                <input type="text" name="name" class="form-control" id="namn">
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="email">Email:</label>
+                <input type="text" name="email" class="form-control" id="email">
+            </div>
+            <div class="col-xs-3 col-centered">
+                <label for="telefon">Telefon:</label>
+                <input type="text" name="phone" class="form-control" id="telefon">
+            </div>
+            <div id="next">
+                <button type="submit" name="submit" class="btn btn-default btn-sm">Låna ut</button>
+            </div>
+        </form>
     </div>
           
     <!-- Optional JavaScript -->

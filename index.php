@@ -6,6 +6,105 @@
 	<body>
     
     <?php
+        
+        require __DIR__ . '/vendor/autoload.php';
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
+        $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
+        
+        $file = GetPermaLink(1);
+        
+        if ($file === "admin2") {
+            $adminFile = GetPermaLink(2);
+            
+            if ($adminFile === "lanaut") {
+                $info = "";
+                $error = "";
+                
+                if (isset($_POST['submit'])) {
+                    $isbn = str_replace("-", "", $_POST['ISBN']);
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $phone = $_POST['phone'];
+                    
+                    $db = ConnectToDatabase();
+                    
+                    if (IsBookLoaned($db, $isbn)) {
+                        $error = 'Bok är utlånad';
+                    } else {
+                        $id = GetUserId($db, $email);
+                        
+                        if ($id === null)
+                        {
+                            InsertNewUser($db, $name, $email, $phone);
+                            $id = GetUserId($db, $email);
+                        }
+                        
+                        LoanBook($db, $id, $isbn);
+                        
+                        $info = 'Utlånad';
+                        
+                    }
+                }
+                
+                echo $twig->render('admin/lanaUtBocker.twig', array('error' => $error, 'info' => $info));
+            } else if ($adminFile === "addbook") {
+                $info = "";
+                $error = "";
+                
+                try {
+                    if(isset($_POST['submit'])) {
+                        $title = $_POST['title'];
+                        $isbn = str_replace("-", "", $_POST['ISBN']);
+                        $author = $_POST['author'];
+                        $category = $_POST['category'];
+                        $release_year = $_POST['release_year'];
+                        $publisher = $_POST['publisher'];
+                        $language = $_POST['language'];
+                        
+                        $db = ConnectToDatabase();
+                        InsertNewBook($db, $title, $isbn, $author, $category, $release_year, $publisher, $language);
+
+                        $info = 'Book tillagd';
+                    }
+                } catch (Exception $e) {
+                    $error = $e->getMessage();
+                    if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
+                        $error = 'En bok med samma ISBN finns redan';
+                    }
+                }
+                
+                echo $twig->render('admin/addNewBooks.twig', array('info' => $info, 'error' => $error));
+            } else if ($adminFile === "lamnain") {
+                echo $twig->render('admin/lamnain.twig', array());
+            } else if ($adminFile === "tabort") {
+                echo $twig->render('admin/tabort.twig', array());
+            } else {
+                echo $twig->render('admin/admin.twig', array());
+            }
+        } else if ($file === "bookinfo") {
+            $isbn = GetPermaLink(2);
+            
+            if (empty($isbn) || !isset($isbn)) {
+                echo "<center><h1>No book selected</h1></center>";
+                exit();
+            }
+            
+            $db = ConnectToDatabase();
+            $book = GetBookFromIsbn($db, $isbn);
+            
+            if (count($book) === 0) {
+                echo '<link rel="stylesheet" href="/projekt3/css/style.css">';
+                echo '<center><h1>Book not found in database</h1></center>';
+                exit();
+            }
+            
+            echo $twig->render('bookinfo.twig', array('book' => $book));
+        } else {
+            $db = ConnectToDatabase();
+            
+            echo $twig->render('site.twig', array('books' => GetAllBooks($db)));
+        }
+        
         function GetPermaLink($skip = 0) {
             $path = ltrim($_SERVER['REQUEST_URI'], '/');
             $elements = explode('/', $path);
@@ -84,69 +183,52 @@
             return $book;
         }
         
-        require __DIR__ . '/vendor/autoload.php';
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
-        $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
+        function LoanBook($db, $userId, $isbn) {
+            $stmt = $db->prepare("UPDATE books SET user_id = :userId WHERE ISBN = :isbn");
+            
+            $stmt->bindParam(':userId', $userId);
+            $stmt->bindParam(':isbn', $isbn);
+            $stmt->execute();
+            
+            return $stmt;
+        }
         
-        $file = GetPermaLink(1);
-        
-        if ($file === "admin2") {
-            $adminFile = GetPermaLink(2);
-            if ($adminFile === "lanaut") {
-                echo $twig->render('admin/lanaUtBocker.twig', array());
-            } else if ($adminFile === "addbook") {
-                try {
-                    if(isset($_POST['submit'])) {
-                        $title = $_POST['title'];
-                        $isbn = str_replace("-", "", $_POST['ISBN']);
-                        $author = $_POST['author'];
-                        $category = $_POST['category'];
-                        $release_year = $_POST['release_year'];
-                        $publisher = $_POST['publisher'];
-                        $language = $_POST['language'];
-                        
-                        $db = ConnectToDatabase();
-                        InsertNewBook($db, $title, $isbn, $author, $category, $release_year, $publisher, $language);
+        function IsBookLoaned($db, $isbn) {
+            $stmt = $db->prepare("SELECT user_id FROM books WHERE ISBN = :isbn limit 1");
 
-                        $info = 'Book tillagd';
-                    }
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
-                    if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
-                        $error = 'En bok med samma ISBN finns redan';
-                    }
-                }
-                
-                echo $twig->render('admin/addNewBooks.twig', array('info' => isset($info) ? $info : "", 'error' => isset($error) ? $error : ""));
-            } else if ($adminFile === "lamnain") {
-                echo $twig->render('admin/lamnain.twig', array());
-            } else if ($adminFile === "tabort") {
-                echo $twig->render('admin/tabort.twig', array());
-            } else {
-                echo $twig->render('admin/admin.twig', array());
-            }
-        } else if ($file === "bookinfo") {
-            $isbn = GetPermaLink(2);
+            $stmt->bindParam(':isbn', $isbn);
+            $stmt->execute();
+            $row = $stmt->fetch();
             
-            if (empty($isbn) || !isset($isbn)) {
-                echo "<center><h1>No book selected</h1></center>";
-                exit();
-            }
+            if ($row[0] == null)
+                return false;
             
-            $db = ConnectToDatabase();
-            $book = GetBookFromIsbn($db, $isbn);
+            return true;
+        }
+        
+        function InsertNewUser($db, $name, $email, $phone) {
+            $stmt = $db->prepare("INSERT INTO Users (name, email, telephone) 
+                                    value (:name, :email, :phone)");
+
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':phone', $phone);
+            $stmt->execute();
             
-            if (count($book) === 0) {
-                echo '<link rel="stylesheet" href="/projekt3/css/style.css">';
-                echo '<center><h1>Book not found in database</h1></center>';
-                exit();
-            }
+            return $stmt;
+        }
+        
+        function GetUserId($db, $email) {
+            $stmt = $db->prepare("SELECT id FROM users WHERE email = :email LIMIT 1");
+
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            echo $twig->render('bookinfo.twig', array('book' => $book));
-        } else {
-            $db = ConnectToDatabase();
-            
-            echo $twig->render('site.twig', array('books' => GetAllBooks($db)));
+            if (count($result) > 0)
+                return $result['id'];
+            else
+                return null;
         }
     ?>
     </body>
