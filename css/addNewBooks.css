@@ -17,6 +17,9 @@
 #loadingGif {
     display: none;
 }
+#loadingImg {
+    width: 20px;
+}
 #footer{
     background-color: #0B486B;
     border-left-style: solid;
