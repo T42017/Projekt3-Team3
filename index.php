@@ -68,6 +68,7 @@
             $stmt->bindParam(':isbn', $isbn);
             $stmt->execute();
             
+            $book = array();
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $book = array(
                     'title'=> $row["title"],
@@ -118,10 +119,8 @@
                 
                 echo $twig->render('admin/addNewBooks.twig', array('info' => isset($info) ? $info : "", 'error' => isset($error) ? $error : ""));
             } else if ($adminFile === "lamnain") {
-                
                 echo $twig->render('admin/lamnain.twig', array());
             } else if ($adminFile === "tabort") {
-                
                 echo $twig->render('admin/tabort.twig', array());
             } else {
                 echo $twig->render('admin/admin.twig', array());
@@ -129,8 +128,19 @@
         } else if ($file === "bookinfo") {
             $isbn = GetPermaLink(2);
             
+            if (empty($isbn) || !isset($isbn)) {
+                echo "<center><h1>No book selected</h1></center>";
+                exit();
+            }
+            
             $db = ConnectToDatabase();
             $book = GetBookFromIsbn($db, $isbn);
+            
+            if (count($book) === 0) {
+                echo '<link rel="stylesheet" href="/projekt3/css/style.css">';
+                echo '<center><h1>Book not found in database</h1></center>';
+                exit();
+            }
             
             echo $twig->render('bookinfo.twig', array('book' => $book));
         } else {
