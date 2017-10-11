@@ -19,7 +19,7 @@
         'ISBN'=> $row["ISBN"],
         'author'=> $row["author"],
         'category'=> $row["category"],
-        'release_date'=> $row["release_date"],
+        'release_year'=> $row["release_year"],
     	'publisher'=> $row["publisher"],
     	'language' => $row["language"]
     );
