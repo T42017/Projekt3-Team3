@@ -29,6 +29,8 @@ input {
 
 #loadingGif {
     display: none;
+    float: right;
+    margin-top: 25px;
 }
 
 #loadingImg {

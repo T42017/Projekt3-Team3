@@ -26,14 +26,13 @@
         <h3 id="error">{{ error }}</h3>
         
         <form method="post">
+            <div id="loadingGif">
+                Searching info about book
+                <img id="loadingImg" src="../loading.gif"/>
+            </div>
             <div class="col-xs-3 col-centered">
                 <label for="isbn" class="text">Bokens ISBN:</label>
                 <input type="text" class="form-control" name="ISBN" id="isbn">
-                
-                <div id="loadingGif">
-                    Searching info about book
-                    <img id="loadingImg" src="../loading.gif"/>
-                </div>
             </div>
             <div class="col-xs-3 col-centered">
                 <label for="titel" class="text">Titel:</label>
