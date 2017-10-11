@@ -1,0 +1,9 @@
+{
+    "require": {
+<<<<<<< HEAD
+        "twig/twig": "^2.0",
+=======
+        "twig/twig": "^2.0"
+>>>>>>> origin/feature-adminpage-design
+    }
+}

@@ -1,9 +1,5 @@
 {
     "require": {
-<<<<<<< Updated upstream
         "twig/twig": "^2.0"
-=======
-        "twig/twig": "~2.0"
->>>>>>> Stashed changes
     }
 }
