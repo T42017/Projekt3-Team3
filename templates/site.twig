@@ -19,28 +19,40 @@
             </div>
         </div>
         <div class="row genres" id="categories">
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Fantasy</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Horror</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Drama</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Comedy</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Mythology</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Realistic</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">History</a></p>
-                <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Sci-fi</a></p>
-                <form>
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="usr">
-                  </div>
-                </form>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Fantasy</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Skräck</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Drama</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Komedi</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Mythologi</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Realistic</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Historia</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Sci-fi</a></p>
+        <form method="post">
+            <div class="form-group main-search">
+                <input type="search" name="search" placeholder="Sök" class="form-control" id="usr">
+                <button type="submit" value="Submit" id="sok" class="btn btn-default btn-sm">Sök</button>
+            </div>
+        </form>
         </div>
+        
         <div class="row controls">
             <div class="col">
-                  <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>
+                <a href="{% if sida > 1 %}
+                            /projekt3/home/sida/{{ sida-1 }}
+                         {% endif %}">
+                    <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button
+                </a>
             </div>
+            
             <div class="col">
-                  <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                <a href="{% if sida < 3 %}
+                            /projekt3/home/sida/{{ sida+1 }}
+                         {% endif %}">
+                    <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                </a>
             </div>
         </div>
+        
         <div class="row" id="catalog">
             {% for book in books %}
             <div class="col-lg-4">
@@ -55,10 +67,19 @@
             </div>
         <div class="row controls">
             <div class="col">
-                  <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>
+                <a href="{% if sida > 1 %}
+                            /projekt3/home/sida/{{ sida-1 }}
+                         {% endif %}">
+                    <button type="button" id="previous" class="btn btn-default btnsm">Föregående</button>
+                </a>
             </div>
+                
             <div class="col">
-                  <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                <a href="{% if sida < 3 %}
+                              /projekt3/home/sida/{{ sida+1 }}
+                         {% endif %}">
+                    <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                </a>
             </div>
         </div>
 
