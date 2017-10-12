@@ -5,6 +5,10 @@
     border-style: solid;
     border-width: 1px;
 }
+#sok{
+    height: 38px;
+    margin-left: 11px;
+}
 #catalog{
     background-color: white;
 }
