@@ -7,54 +7,49 @@
 
     if ($file === "admin") {
         $adminFile = GetPermaLink(2);
-            
-
+        
         if ($adminFile === "lanaut") {
             
             require_once 'php/lanaut.php';
             DoStuff($twig);
+            
         } else if ($adminFile === "addbook") {
             
             require_once 'php/addNewBook.php';
             DoStuff($twig);
+            
         } else if ($adminFile === "lamnain") {
             
             echo $twig->render('admin/lamnain.twig', array());
+            
         } else if ($adminFile === "tabort") {
             
             echo $twig->render('admin/tabort.twig', array());
+            
         } else {
             
             echo $twig->render('admin/admin.twig', array());
+            
         }
     } else if ($file === "bookinfo") {
         
         require_once 'php/bookinfo.php';
         DoStuff($twig);
+        
     } else {
-        $shouldSelectSida = GetPermaLink(2);
-        $sida = 1;
         
-        if ($shouldSelectSida === 'sida') {
-             $sida = GetPermaLink(3);
-        }
-        $listStart = ($sida - 1) * 18;
+        require_once 'php/site.php';
+        DoStuff($twig);
         
-        $db = ConnectToDatabase();
-        echo $twig->render('site.twig', array('books' => GetAllBooks($db, $listStart), 'sida' => $sida));
-
     }
-
+    
     function GetPermaLink($skip = 0) {
         $path = ltrim($_SERVER['REQUEST_URI'], '/');
         $elements = explode('/', $path);
 
-        if(empty($elements[0]))
-        {
+        if(empty($elements[0])) {
             return null;
-        }
-        else
-        {
+        } else {
             for($i=0; $i< $skip;$i++)
                 array_shift($elements);
 
@@ -67,25 +62,6 @@
         $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $db;
-    }
-
-    function GetAllBooks($db, $listStart) {
-        $stmt = $db->prepare('SELECT * FROM books ORDER BY id ASC LIMIT :start, 18');
-        $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
-            $book[] = array(
-                'title'=> $row["title"],
-                'ISBN'=> $row["ISBN"],
-                'author'=> $row["author"],
-                'category'=> $row["category"],
-                'release_year'=> $row["release_year"],
-                'publisher'=> $row["publisher"],
-                'language' => $row["language"]
-            );
-        }
-        return $book;
     }
 
 ?>
