@@ -62,9 +62,20 @@
                 echo $twig->render('admin/admin.twig', array());
             }
         } else {
+            $shouldSelectSida = GetPermaLink(2);
+            $sida = 1;
             $pdo = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
-            $stmt = $pdo->query('SELECT * FROM books LIMIT 18');
-
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                       
+            if ($shouldSelectSida === 'sida') {
+                $sida = GetPermaLink(3);
+            }
+            $listStart = ($sida - 1) * 18;
+            
+            $stmt = $pdo->prepare("SELECT * FROM books ORDER BY id ASC LIMIT :start, 18");
+            $stmt->bindParam(':start', $listStart, PDO:: PARAM_INT);
+            $stmt->execute();
+            
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
                 $book[] = array(
                     'title'=> $row["title"],
@@ -76,7 +87,8 @@
                     'language' => $row["language"]
                 );
             }
-            echo $twig->render('site.twig', array('books' => $book));
+            //$book=array();
+            echo $twig->render('site.twig', array('books' => $book , 'sida' => $sida));
         }
         
         function GetPermaLink($skip = 0)
