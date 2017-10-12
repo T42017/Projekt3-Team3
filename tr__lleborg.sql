@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 11 okt 2017 kl 14:07
+-- Tid vid skapande: 12 okt 2017 kl 15:11
 -- Serverversion: 10.1.19-MariaDB
 -- PHP-version: 7.0.13
 
@@ -46,7 +46,7 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `ISBN`, `author`, `category`, `release_year`, `user_id`, `publisher`, `language`) VALUES
-(1, 'Star Wars Forces of Destiny', '9781566199094', 'Jennifer Muro', 'Science fiction, Action/Äventyr, Anthology', '2017', 2, 'Carrie Beck Dave Filoni', 'Engelska'),
+(1, 'Star Wars Forces of Destiny', '9781566199094', 'Jennifer Muro', 'Science fiction, Action, Äventyr', '2017', 2, 'Carrie Beck Dave Filoni', 'Engelska'),
 (2, 'Harry Potter and the Philosopher''s Stone', '1746382947341', 'J. K. Rowling', 'Fantasy, Drama, Mysterie, Thriller', '1997', NULL, 'Bloomsbury Publishing (UK), Scholastic (US)', 'Engelska'),
 (3, 'Harry Potter and the Chamber of Secrets', '0747538492', 'J. K. Rowling', 'Fantasy', '1998', 3, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
 (4, 'Harry Potter and the Prisoner of Azkaban', '0747542155', 'J. K. Rowling', 'Fantasy', '1999', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
@@ -54,12 +54,12 @@ INSERT INTO `books` (`id`, `title`, `ISBN`, `author`, `category`, `release_year`
 (6, 'Harry Potter and the Order of the Phoenix', '0747551006', 'J. K. Rowling', 'Fantasy', '2003', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
 (7, 'Harry Potter and the Half-Blood Prince', '0747581088', 'J. K. Rowling', 'Fantasy', '2005', NULL, 'Bloomsbury (UK) (Canada 2010–present)', 'Engelska'),
 (8, 'Harry Potter and the Deathly Hallows', '0545010225', 'J. K. Rowling', 'Fantasy', '2007', NULL, 'Bloomsbury', 'Engelska'),
+(9, 'Minecraft', '9789113043722', 'Daniel Goldberg, Linus Larsson', 'Biografi', '2012', NULL, 'Norstedt', 'Svenska'),
 (37, 'Hästen och hans pojke', '9789163887932', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(38, 'Häxan och lejonet', '9789163887901', 'Lewis, C. S. (Clive Staples)', 'Fantasy, äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
+(38, 'Häxan och lejonet', '9789163887901', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
 (39, 'Caspian, prins av Narnia', '9789163887925', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
 (40, 'Kung Caspian och skeppet Gryningen', '9789163887918', 'Lewis, C. S. (Clive Staples)', 'Fantasy, Äventyr', '2016', NULL, 'Bonnier Carlsen', 'Svenska'),
-(41, 'Minecraft', '9789113043722', 'Daniel Goldberg, Linus Larsson', 'Biografi', '2012', NULL, 'Norstedt', 'Svenska'),
-(42, 'The Da Vinci code', '0552149519', 'Dan Brown', 'Mysterie, Thriller, Deckare', '2004', NULL, 'Corgi', 'Engelska'),
+(42, 'The Da Vinci code', '0552149519', 'Dan Brown', 'Mysterie, Thriller, Deckare', '2004', NULL, 'Corgi Yearling', 'Engelska'),
 (43, 'Jag är Zlatan Ibrahimović ', '9789100126537', 'Zlatan Ibrahimovic, David Lagercrantz', 'Biografi', '2011', NULL, 'Bonnier', 'Svenska'),
 (44, 'Sveriges historia 1600-1721', '9789113024400', 'Nils Erik Villstrand', 'Historia', '2011', NULL, 'Norstedt', 'Svenska'),
 (45, 'Processen', '9789174996203', 'Franz Kafka', 'Roman, Expressionism', '2014', NULL, 'Modernista', 'Svenska'),

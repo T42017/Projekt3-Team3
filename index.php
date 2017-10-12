@@ -2,7 +2,6 @@
     require __DIR__ . '/vendor/autoload.php';
     $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
     $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
-
     $file = GetPermaLink(1);
 
     if ($file === "admin") {
@@ -10,28 +9,28 @@
             
 
         if ($adminFile === "lanaut") {
-            
             require_once 'php/lanaut.php';
             DoStuff($twig);
-        } else if ($adminFile === "addbook") {
-            
+        }
+        else if ($adminFile === "addbook") {
             require_once 'php/addNewBook.php';
             DoStuff($twig);
-        } else if ($adminFile === "lamnain") {
-            
+        }
+        else if ($adminFile === "lamnain") {
             echo $twig->render('admin/lamnain.twig', array());
-        } else if ($adminFile === "tabort") {
-            
+        }
+        else if ($adminFile === "tabort") {
             echo $twig->render('admin/tabort.twig', array());
-        } else {
-            
+        }
+        else {
             echo $twig->render('admin/admin.twig', array());
         }
-    } else if ($file === "bookinfo") {
-        
-        require_once 'php/bookinfo.php';
-        DoStuff($twig);
-    } else {
+    }  
+        else if ($file === "bookinfo") {
+            require_once 'php/bookinfo.php';
+            DoStuff($twig);
+       }
+    else {
         $shouldSelectSida = GetPermaLink(2);
         $sida = 1;
         
@@ -39,10 +38,8 @@
              $sida = GetPermaLink(3);
         }
         $listStart = ($sida - 1) * 18;
-        
         $db = ConnectToDatabase();
         echo $twig->render('site.twig', array('books' => GetAllBooks($db, $listStart), 'sida' => $sida));
-
     }
 
     function GetPermaLink($skip = 0) {
@@ -53,6 +50,7 @@
         {
             return null;
         }
+        
         else
         {
             for($i=0; $i< $skip;$i++)
@@ -87,5 +85,4 @@
         }
         return $book;
     }
-
 ?>
