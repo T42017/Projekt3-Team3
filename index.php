@@ -14,9 +14,12 @@
         
         if ($file === "admin2") {
             $adminFile = GetPermaLink(2);
+            
             if ($adminFile === "lanaut") {
                 echo $twig->render('admin/lanaUtBocker.twig', array());
-            } else if ($adminFile === "addbook") {
+            }
+            
+            else if ($adminFile === "addbook") {
                 $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -56,12 +59,14 @@
                 echo $twig->render('admin/addNewBooks.twig', array('error' => isset($error) ? $error : ""));
             } else if ($adminFile === "lamnain") {
                 echo $twig->render('admin/lamnain.twig', array());
-            } else if ($adminFile === "tabort") {
+            }
+            else if ($adminFile === "tabort") {
                 echo $twig->render('admin/tabort.twig', array());
-            } else {
+            }
+            else {
                 echo $twig->render('admin/admin.twig', array());
             }
-        } else {
+        }  else {
             $shouldSelectSida = GetPermaLink(2);
             $sida = 1;
             $pdo = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');

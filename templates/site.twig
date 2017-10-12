@@ -33,23 +33,25 @@
                   </div>
                 </form>
         </div>
+        
         <div class="row controls">
             <div class="col">
-                <a href="
-                         {% if sida > 1 %}
+                <a href="{% if sida > 1 %}
                             /projekt3/home/sida/{{ sida-1 }}
-                         {% endif %}
-                         ">
-                    <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button></a>
+                         {% endif %}">
+                    <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button
+                </a>
             </div>
+            
             <div class="col">
                 <a href="{% if sida < 3 %}
                             /projekt3/home/sida/{{ sida+1 }}
-                         {% endif %}
-                         ">
-                  <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button></a>
+                         {% endif %}">
+                    <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                </a>
             </div>
         </div>
+        
         <div class="row" id="catalog">
             {% for book in books %}
             <div class="col-lg-4">
@@ -63,10 +65,19 @@
 
         <div class="row controls">
             <div class="col">
-                  <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>
+                <a href="{% if sida > 1 %}
+                            /projekt3/home/sida/{{ sida-1 }}
+                         {% endif %}">
+                    <button type="button" id="previous" class="btn btn-default btnsm">Föregående</button>
+                </a>
             </div>
+                
             <div class="col">
-                  <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                <a href="{% if sida < 3 %}
+                              /projekt3/home/sida/{{ sida+1 }}
+                         {% endif %}">
+                    <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
+                </a>
             </div>
         </div>
 
