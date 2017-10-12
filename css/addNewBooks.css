@@ -32,14 +32,14 @@
     text-align: center;
 }
 
-#loadingGif {
+#search {
     display: none;
     float: right;
     margin-top: 25px;
 }
 
 #loadingImg {
-    width: 20px;
+    width: 40px;
 }
 
 #footer{

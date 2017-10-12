@@ -5,7 +5,7 @@ $(document).ready(function () {
         if (!/^\d+$/.test(isbn) || (isbn.length < 10 || isbn.length > 13))
             return;
         
-        $("#loadingGif").css('display', 'inline');
+        $("#search").css('display', 'inline');
         checkISBN(isbn);
     });
 
@@ -51,12 +51,13 @@ $(document).ready(function () {
                     $("#language").val(language);
                 if (year)
                     $("#year").val(year);
+                
                 setTimeout(hideGif, 300);
             });
         });
         
         function hideGif() {
-            $("#loadingGif").css('display', 'none');
+            $("#search").css('display', 'none');
         }
     };
 });
