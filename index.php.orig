@@ -1,139 +1,93 @@
-<<<<<<< HEAD
 <?php
     require __DIR__ . '/vendor/autoload.php';
     $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
     $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
-=======
-<!DOCTYPE html>
-<html>
-	<head>
-	   <meta charset="UTF-8">
-	</head>
-	<body>
-    
-    <?php
-        require __DIR__ . '/vendor/autoload.php';
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
-        $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
-        
-        $file = GetPermaLink(1);
-        
-        if ($file === "admin2") {
-            $adminFile = GetPermaLink(2);
-            
-            if ($adminFile === "lanaut") {
-                echo $twig->render('admin/lanaUtBocker.twig', array());
-            }
-            
-            else if ($adminFile === "addbook") {
-                $db = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
-                $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                try {
-                    if(isset($_POST['submit'])) {
-
-                        $title = $_POST['title'];
-                        $isbn = str_replace("-", "", $_POST['ISBN']);
-                        $author = $_POST['author'];
-                        $category = $_POST['category'];
-                        $release_year = $_POST['release_year'];
-                        $publisher = $_POST['publisher'];
-                        $language = $_POST['language'];
->>>>>>> origin/feature-showbooks
-
     $file = GetPermaLink(1);
 
     if ($file === "admin") {
         $adminFile = GetPermaLink(2);
-
-<<<<<<< HEAD
+        
         if ($adminFile === "lanaut") {
-            
             require_once 'php/lanaut.php';
             DoStuff($twig);
+<<<<<<< HEAD
+            
         } else if ($adminFile === "addbook") {
             
             require_once 'php/addNewBook.php';
             DoStuff($twig);
+            
         } else if ($adminFile === "lamnain") {
             
             echo $twig->render('admin/lamnain.twig', array());
+            
         } else if ($adminFile === "tabort") {
             
             echo $twig->render('admin/tabort.twig', array());
+            
         } else {
             
-            echo $twig->render('admin/admin.twig', array());
 =======
-                        //print_r($stmt->fetch(PDO::FETCH_ASSOC));
-
-                        echo 'Book tillagd';
-                    }
-                } catch (Exception $e) {
-                    $error = $e->getMessage();
-                    if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
-                        $error = 'En bok med samma ISBN finns redan';
-                    }
-                }
-                echo $twig->render('admin/addNewBooks.twig', array('error' => isset($error) ? $error : ""));
-            } else if ($adminFile === "lamnain") {
-                echo $twig->render('admin/lamnain.twig', array());
-            }
-            else if ($adminFile === "tabort") {
-                echo $twig->render('admin/tabort.twig', array());
-            }
-            else {
-                echo $twig->render('admin/admin.twig', array());
-            }
-        }  else {
-            $shouldSelectSida = GetPermaLink(2);
-            $sida = 1;
-            $pdo = new PDO('mysql:host=localhost;dbname=trälleborg;charset=utf8mb4', 'root', '');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                       
-            if ($shouldSelectSida === 'sida') {
-                $sida = GetPermaLink(3);
-            }
-            $listStart = ($sida - 1) * 18;
-            
-            $stmt = $pdo->prepare("SELECT * FROM books ORDER BY id ASC LIMIT :start, 18");
-            $stmt->bindParam(':start', $listStart, PDO:: PARAM_INT);
-            $stmt->execute();
-            
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
-                $book[] = array(
-                    'title'=> $row["title"],
-                    'ISBN'=> $row["ISBN"],
-                    'author'=> $row["author"],
-                    'category'=> $row["category"],
-                    'release_year'=> $row["release_year"],
-                    'publisher'=> $row["publisher"],
-                    'language' => $row["language"]
-                );
-            }
-            //$book=array();
-            echo $twig->render('site.twig', array('books' => $book , 'sida' => $sida));
->>>>>>> origin/feature-showbooks
         }
+        else if ($adminFile === "addbook") {
+            require_once 'php/addNewBook.php';
+            DoStuff($twig);
+        }
+        else if ($adminFile === "lamnain") {
+            echo $twig->render('admin/lamnain.twig', array());
+        }
+        else if ($adminFile === "tabort") {
+            echo $twig->render('admin/tabort.twig', array());
+        }
+        else {
+>>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
+            echo $twig->render('admin/admin.twig', array());
+            
+        }
+<<<<<<< HEAD
     } else if ($file === "bookinfo") {
         
         require_once 'php/bookinfo.php';
         DoStuff($twig);
+        
     } else {
+        
+        require_once 'php/site.php';
+        DoStuff($twig);
+        
+=======
+    }  
+        else if ($file === "bookinfo") {
+            require_once 'php/bookinfo.php';
+            DoStuff($twig);
+       }
+    else {
+        $shouldSelectSida = GetPermaLink(2);
+        $sida = 1;
+        
+        if ($shouldSelectSida === 'sida') {
+             $sida = GetPermaLink(3);
+        }
+        $listStart = ($sida - 1) * 18;
         $db = ConnectToDatabase();
-        echo $twig->render('site.twig', array('books' => GetAllBooks($db)));
+        echo $twig->render('site.twig', array('books' => GetAllBooks($db, $listStart), 'sida' => $sida));
+>>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
     }
-
+    
     function GetPermaLink($skip = 0) {
         $path = ltrim($_SERVER['REQUEST_URI'], '/');
         $elements = explode('/', $path);
 
-        if(empty($elements[0]))
-        {
+        if(empty($elements[0])) {
             return null;
+<<<<<<< HEAD
+        } else {
+=======
         }
+        
         else
         {
+>>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
             for($i=0; $i< $skip;$i++)
                 array_shift($elements);
 
@@ -148,9 +102,13 @@
         return $db;
     }
 
-    function GetAllBooks($db) {
-        $stmt = $db->query('SELECT * FROM books');
-
+<<<<<<< HEAD
+=======
+    function GetAllBooks($db, $listStart) {
+        $stmt = $db->prepare('SELECT * FROM books ORDER BY id ASC LIMIT :start, 18');
+        $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
+        $stmt->execute();
+        
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
             $book[] = array(
                 'title'=> $row["title"],
@@ -164,5 +122,5 @@
         }
         return $book;
     }
-
+>>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
 ?>
