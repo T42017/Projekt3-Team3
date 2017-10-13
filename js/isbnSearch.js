@@ -31,8 +31,14 @@ $(document).ready(function () {
                     if (!publisher && value.publisher)
                         publisher = value.publisher;
 
-                    if (!language && value.language)
-                        language = value.language;
+                    if (!language && value.language) {
+                        if (value.language.toLowerCase() == 'swe')
+                            language = 'Svenska';
+                        else if (value.language.toLowerCase() == 'eng')
+                            language = 'Engelska';
+                        else
+                            language = value.language;
+                    }
 
                     if (!year && value.date)
                         year = value.date.substring(value.date.length - 4, value.date.length);

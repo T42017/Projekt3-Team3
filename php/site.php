@@ -16,10 +16,14 @@ function DoStuff($twig) {
 
     $db = ConnectToDatabase();
     
-    echo $twig->render('site.twig', array('books' => GetAllBooks($db, $listStart), 'sida' => $sida));
+    $goNextPage = false;
+    if ($listStart + 18 < GetMaxBooks($db))
+        $goNextPage = true;
+    
+    echo $twig->render('site.twig', array('books' => GetBooks($db, $listStart), 'sida' => $sida, 'canGoNextPage' => $goNextPage));
 }
 
-function GetAllBooks($db, $listStart) {
+function GetBooks($db, $listStart) {
     $stmt = $db->prepare('SELECT * FROM books ORDER BY id ASC LIMIT :start, 18');
     $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
     $stmt->execute();
@@ -36,5 +40,12 @@ function GetAllBooks($db, $listStart) {
         );
     }
     return isset($book) ? $book : null;
+}
+
+function GetMaxBooks($db) {
+    $stmt = $db->query('SELECT COUNT(*) FROM books');
+    $row = $stmt->fetch();
+
+    return $row[0];
 }
 ?>

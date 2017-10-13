@@ -14,7 +14,7 @@ function DoStuff($twig) {
             $db = ConnectToDatabase();
             $site->InsertNewBook($db);
 
-            $site->info = 'Book tillagd';
+            $site->info = 'Boken är tillagd';
         } catch (Exception $e) {
             $error = $e->getMessage();
             if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
