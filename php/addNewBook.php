@@ -14,11 +14,11 @@ function DoStuff($twig) {
             $db = ConnectToDatabase();
             $site->InsertNewBook($db);
 
-            $site->info = 'Book tillagd';
+            $site->info = 'Boken har lagts till';
         } catch (Exception $e) {
             $error = $e->getMessage();
             if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
-                $site->error = 'En bok med samma ISBN finns redan';
+                $site->error = 'En bok med samma ISBN-nummer finns redan';
             }
         }
     }

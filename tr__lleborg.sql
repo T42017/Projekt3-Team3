@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 12 okt 2017 kl 15:11
+-- Tid vid skapande: 13 okt 2017 kl 10:09
 -- Serverversion: 10.1.19-MariaDB
 -- PHP-version: 7.0.13
 
@@ -74,7 +74,11 @@ INSERT INTO `books` (`id`, `title`, `ISBN`, `author`, `category`, `release_year`
 (54, 'Halt''s peril', '9780440869832', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
 (55, 'The emperor of Nihon-Ja', '9780440869849', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
 (56, 'The Lost Stories', '9780440869931', 'John Flanagan', 'Fantasy, Äventyr', '2011', NULL, 'Corgi Yearling', 'Engelska'),
-(57, 'The Royal Ranger', '9780440869948', 'John Flanagan', 'Fantasy, Äventyr', '2013', NULL, 'Corgi Yearling', 'Engelska');
+(57, 'The Royal Ranger', '9780440869948', 'John Flanagan', 'Fantasy, Äventyr', '2013', NULL, 'Corgi Yearling', 'Engelska'),
+(58, 'Svenska hackare [Elektronisk resurs]', '9789113033440', 'Linus Larsson, Daniel Goldberg', 'Samhälle & kultur', '2014', NULL, 'Norstedts', 'Svenska'),
+(59, 'Sveriges rikes lag', '9789139019848', 'Johan Munck', 'Lagar & regler', '2017', NULL, 'Wolters Kluwer', 'Svenska'),
+(61, 'Trafikens grunder', '9789188377159', '', 'Lagar & regler', '2016', NULL, 'STR service', 'Svenska'),
+(62, 'Masse : helvetet tur & retur', '9789188483089', 'Marcus Birro, Mats Magnusson', 'Biografi', '2017', NULL, 'Idrottsförlaget', 'Svenska');
 
 -- --------------------------------------------------------
 
@@ -126,7 +130,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT för tabell `books`
 --
 ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT för tabell `users`
 --
