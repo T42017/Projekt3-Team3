@@ -23,10 +23,11 @@
             <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Skräck</a></p>
             <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Drama</a></p>
             <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Komedi</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Mythologi</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Realistic</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Biografi</a></p>
+            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Äventyr</a></p>
             <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Historia</a></p>
             <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Sci-fi</a></p>
+        
         <form method="post">
             <div class="form-group main-search">
                 <input type="search" name="search" placeholder="Sök" class="form-control" id="usr">
@@ -71,6 +72,7 @@
             </div>
             {% endfor %}
             </div>
+        
         <div class="row controls">
             <div class="col">
                 <a href="{% if sida > 1 %}
@@ -85,7 +87,7 @@
             
             <div class="col">
                 <a href="{% if sida < 3 %}
-                              /projekt3/home/sida/{{ sida+1 }}
+                            /projekt3/home/sida/{{ sida+1 }}
                          {% else %}
                             #
                          {% endif %}

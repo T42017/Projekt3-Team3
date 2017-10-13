@@ -2,45 +2,33 @@
     require __DIR__ . '/vendor/autoload.php';
     $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
     $twig = new Twig_Environment($loader, array('cache' => __DIR__ . '/cache', 'debug' => true));
-
     $file = GetPermaLink(1);
 
     if ($file === "admin") {
         $adminFile = GetPermaLink(2);
         
         if ($adminFile === "lanaut") {
-            
             require_once 'php/lanaut.php';
             DoStuff($twig);
-            
-        } else if ($adminFile === "addbook") {
-            
+        else if ($adminFile === "addbook") {
             require_once 'php/addNewBook.php';
             DoStuff($twig);
-            
-        } else if ($adminFile === "lamnain") {
-            
+        else if ($adminFile === "lamnain") {
             echo $twig->render('admin/lamnain.twig', array());
-            
-        } else if ($adminFile === "tabort") {
-            
+        else if ($adminFile === "tabort") {
             echo $twig->render('admin/tabort.twig', array());
-            
-        } else {
-            
+	} else {
             echo $twig->render('admin/admin.twig', array());
-            
         }
     } else if ($file === "bookinfo") {
-        
         require_once 'php/bookinfo.php';
         DoStuff($twig);
-        
+
+    
     } else {
-        
         require_once 'php/site.php';
         DoStuff($twig);
-        
+
     }
     
     function GetPermaLink($skip = 0) {
@@ -50,6 +38,7 @@
         if(empty($elements[0])) {
             return null;
         } else {
+        
             for($i=0; $i< $skip;$i++)
                 array_shift($elements);
 
