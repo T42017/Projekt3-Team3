@@ -40,20 +40,20 @@
             <div class="col">
                 <a href="{% if sida > 1 %}
                             /projekt3/home/sida/{{ sida-1 }}
-<<<<<<< HEAD
                          {% else %}
                             #
                          {% endif %}
                          ">
-=======
-                         {% endif %}">
->>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
                     <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>
                 </a>
             </div>
             
             <div class="col">
-                <a href="{% if sida < 3 %}
+<<<<<<< HEAD
+                <a href="{% if canGoNextPage %}
+=======
+                <a href="{% if sida < 4 %}
+>>>>>>> origin/feature-showbooks
                             /projekt3/home/sida/{{ sida+1 }}
                          {% else %}
                             #
@@ -75,36 +75,27 @@
                 <p class="genre">{{ book.category }}</p>
             </div>
             {% endfor %}
-            </div>
+        </div>
         
         <div class="row controls">
             <div class="col">
                 <a href="{% if sida > 1 %}
                             /projekt3/home/sida/{{ sida-1 }}
-<<<<<<< HEAD
                          {% else %}
                             #
                          {% endif %}
                          ">
-=======
-                         {% endif %}">
->>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
                     <button type="button" id="previous" class="btn btn-default btn-sm">Föregående</button>
                 </a>
             </div>
             
             <div class="col">
-                <a href="{% if sida < 3 %}
-<<<<<<< HEAD
-                              /projekt3/home/sida/{{ sida+1 }}
+                <a href="{% if canGoNextPage %}
+                            /projekt3/home/sida/{{ sida+1 }}
                          {% else %}
                             #
                          {% endif %}
                          ">
-=======
-                            /projekt3/home/sida/{{ sida+1 }}
-                         {% endif %}">
->>>>>>> 0c562ec5f29179365ce475359bf6ec218debd9f3
                     <button type="button" id="next" class="btn btn-default btn-sm">Nästa</button>
                 </a>
             </div>
