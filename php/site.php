@@ -14,20 +14,31 @@ function DoStuff($twig) {
         echo 'Index out of range';
         exit;
     }
-
+       
     $db = ConnectToDatabase();
     
+    if(isset($_GET['search']))
+    {
+        $search = '%' . $_GET['search'] . '%';
+    }
+    else
+    {
+        $search = '%';
+    }
+    
     $goNextPage = false;
+    
     if ($listStart + $pageSize < GetMaxBooks($db))
         $goNextPage = true;
-    
-    echo $twig->render('site.twig', array('books' => GetBooks($db, $listStart, $pageSize), 'sida' => $sida, 'canGoNextPage' => $goNextPage));
+       
+    echo $twig->render('site.twig', array('books' => GetBooks($db, $listStart, $pageSize, $search), 'sida' => $sida, 'canGoNextPage' => $goNextPage));   
 }
 
-function GetBooks($db, $listStart, $pageSize) {
-    $stmt = $db->prepare('SELECT * FROM books ORDER BY id ASC LIMIT :start, :pageSize');
+function GetBooks($db, $listStart, $pageSize, $search) {
+    $stmt = $db->prepare("SELECT * FROM books WHERE title LIKE :search ORDER BY id ASC LIMIT :start, :pageSize ");
     $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
     $stmt->bindParam(':pageSize', $pageSize, PDO::PARAM_INT);
+    $stmt->bindParam(':search', $search, PDO::PARAM_STR);
     $stmt->execute();
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
