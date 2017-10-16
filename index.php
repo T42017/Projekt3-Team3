@@ -10,22 +10,33 @@
         if ($adminFile === "lanaut") {
             require_once 'php/lanaut.php';
             DoStuff($twig);
-        } else if ($adminFile === "addbook") {
+        }
+        
+        else if ($adminFile === "addbook") {
             require_once 'php/addNewBook.php';
             DoStuff($twig);
-        } else if ($adminFile === "lamnain") {
+        }
+        
+        else if ($adminFile === "lamnain") {
             require_once 'php/lamnain.php';
             DoStuff($twig);
-        } else if ($adminFile === "tabort") {
+        }
+        
+        else if ($adminFile === "tabort") {
             echo $twig->render('admin/tabort.twig', array());
-        } else {
+        }
+        
+        else {
             echo $twig->render('admin/admin.twig', array());
         }
-    } else if ($file === "bookinfo") {
+    }
+
+    else if ($file === "bookinfo") {
         require_once 'php/bookinfo.php';
         DoStuff($twig);
-
-    } else {
+    }
+    
+    else {
         require_once 'php/site.php';
         DoStuff($twig);
     }

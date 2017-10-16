@@ -1,11 +1,8 @@
 <?php
 function DoStuff($twig) {
-//    $shouldHaveSearched = GetPermaLink(4);
     $shouldSelectSida = GetPermaLink(2);
     $sida = 1;
     $pageSize = 18;
-
-//    if ($shouldHaveSearched ==='search')
     
     if ($shouldSelectSida === 'sida') {
         $sida = GetPermaLink(3);
@@ -22,12 +19,14 @@ function DoStuff($twig) {
     
     if(isset($_GET['search']))
     {
-        $search = '%' . $_GET['search'] . '%';
+        $searchDb = '%' . $_GET['search'] . '%';
+        $search =$_GET['search'];
     }
     
     else
     {
-        $search = '%';
+        $searchDb = '%';
+        $search = '';
     }
     
     $goNextPage = false;
@@ -35,11 +34,11 @@ function DoStuff($twig) {
     if ($listStart + $pageSize < GetMaxBooks($db))
         $goNextPage = true;
        
-    echo $twig->render('site.twig', array('books' => GetBooks($db, $listStart, $pageSize, $search), 'sida' => $sida, 'canGoNextPage' => $goNextPage));   
+    echo $twig->render('site.twig', array('books' => GetBooks($db, $listStart, $pageSize, $searchDb), 'sida' => $sida, 'canGoNextPage' => $goNextPage, 'search' => $search));   
 }
 
 function GetBooks($db, $listStart, $pageSize, $search) {
-    $stmt = $db->prepare("SELECT * FROM books WHERE title LIKE :search ORDER BY id ASC LIMIT :start, :pageSize ");
+    $stmt = $db->prepare("SELECT * FROM books WHERE title LIKE :search ORDER BY title ASC LIMIT :start, :pageSize ");
     $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
     $stmt->bindParam(':pageSize', $pageSize, PDO::PARAM_INT);
     $stmt->bindParam(':search', $search, PDO::PARAM_STR);

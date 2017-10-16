@@ -69,7 +69,5 @@ class LanaUt {
 
         return true;
     }
-    
 }
-
 ?>
