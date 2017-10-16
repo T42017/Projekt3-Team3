@@ -1,11 +1,14 @@
 <?php
 function DoStuff($twig) {
+//    $shouldHaveSearched = GetPermaLink(4);
     $shouldSelectSida = GetPermaLink(2);
     $sida = 1;
     $pageSize = 18;
 
+//    if ($shouldHaveSearched ==='search')
+    
     if ($shouldSelectSida === 'sida') {
-         $sida = GetPermaLink(3);
+        $sida = GetPermaLink(3);
     }
     
     $listStart = ($sida - 1) * $pageSize;
@@ -21,6 +24,7 @@ function DoStuff($twig) {
     {
         $search = '%' . $_GET['search'] . '%';
     }
+    
     else
     {
         $search = '%';
@@ -57,7 +61,6 @@ function GetBooks($db, $listStart, $pageSize, $search) {
 function GetMaxBooks($db) {
     $stmt = $db->query('SELECT COUNT(*) FROM books');
     $row = $stmt->fetch();
-
     return $row[0];
 }
 ?>
