@@ -14,7 +14,8 @@
             require_once 'php/addNewBook.php';
             DoStuff($twig);
         } else if ($adminFile === "lamnain") {
-            echo $twig->render('admin/lamnain.twig', array());
+            require_once 'php/lamnain.php';
+            DoStuff($twig);
         } else if ($adminFile === "tabort") {
             echo $twig->render('admin/tabort.twig', array());
         } else {
