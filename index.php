@@ -27,23 +27,20 @@
     } else {
         require_once 'php/site.php';
         DoStuff($twig);
-
     }
     
     function GetPermaLink($skip = 0) {
         $path = ltrim($_SERVER['REQUEST_URI'], '/');
         $elements = explode('/', $path);
 
-        if(empty($elements[0])) {
+        if(empty($elements[0])) 
             return null;
-        } else {
         
-            for($i=0; $i< $skip;$i++)
-                array_shift($elements);
+        for($i=0; $i< $skip;$i++)
+            array_shift($elements);
 
-            $req = array_shift($elements);
-            return strtolower($req);
-        }
+        $req = array_shift($elements);
+        return strtolower($req);
     }
 
     function ConnectToDatabase() {

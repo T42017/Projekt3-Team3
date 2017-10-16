@@ -32,24 +32,17 @@ class Site {
     public $post;
 
     function ValidateInput() {
-        $title = $this->post['title'];
-        if (empty($title))
+        
+        if (empty($this->post['title']))
             return false;
 
-        $isbn = str_replace("-", "", $this->post['ISBN']);
-        if (preg_match('/[^0-9]/', $isbn)) {
+        $this->post['ISBN'] = str_replace("-", "", $this->post['ISBN']);
+        if (preg_match('/[^0-9]/', $this->post['ISBN'])) {
             return false;
         }
 
-        $author = $this->post['author'];
-        $category = $this->post['category'];
-
-        $release_year = $this->post['release_year'];
-        if (strlen($release_year) != 4)
+        if (strlen($this->post['release_year']) != 4)
             return false;
-
-        $publisher = $this->post['publisher'];
-        $language = $this->post['language'];
 
         return true;
     }
