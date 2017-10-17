@@ -29,14 +29,14 @@
         else {
             echo $twig->render('admin/admin.twig', array());
         }
-    }
-
-    else if ($file === "bookinfo") {
+    }else if ($file === "bookinfo") {
         require_once 'php/bookinfo.php';
         DoStuff($twig);
-    }
-    
-    else {
+    } else if ($file === "fourofour") {
+        
+        echo $twig->render('fourofour.twig', array());
+    } else {
+        
         require_once 'php/site.php';
         DoStuff($twig);
     }
