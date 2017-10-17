@@ -6,23 +6,23 @@ function DoStuff($twig) {
     $db = ConnectToDatabase();
     
     if(isset($_POST['submit'])) {
-        if (!$site->ValidateInput()){
-            echo 'validation error';
-            exit;
-        }
-        
-        try {
-            $genres = array();
-            if (isset($_POST['genres']))
-                $genres = $_POST['genres'];
-            
-            $site->InsertNewBook($db, $genres);
+        $valid = $site->ValidateInput();
+        if (!empty($valid)) {
+            $site->error = $valid;
+        } else {
+            try {
+                $genres = array();
+                if (isset($_POST['genres']))
+                    $genres = $_POST['genres'];
 
-            $site->info = 'Boken har lagts till';
-        } catch (Exception $e) {
-            $error = $e->getMessage();
-            if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
-                $site->error = 'En bok med samma ISBN-nummer finns redan';
+                $site->InsertNewBook($db, $genres);
+
+                $site->info = 'Boken har lagts till';
+            } catch (Exception $e) {
+                $error = $e->getMessage();
+                if (strpos($error, 'Duplicate entry') && strpos($error, "for key 'ISBN'")) {
+                    $site->error = 'En bok med samma ISBN-nummer finns redan';
+                }
             }
         }
     }
@@ -40,17 +40,16 @@ class Site {
     function ValidateInput() {
         
         if (empty($this->post['title']))
-            return false;
+            return 'Ingen title';
 
         $this->post['ISBN'] = str_replace("-", "", $this->post['ISBN']);
-        if (preg_match('/[^0-9]/', $this->post['ISBN'])) {
-            return false;
-        }
+        if (!preg_match('/^[0-9]{10,13}$/', $this->post['ISBN']))
+            return 'Fel isbn format';
+        
+        if (empty($this->post['release_year']) || !preg_match('/^[0-9]{4}$/', $this->post['release_year']))
+            return 'Utgivningsåret var i fel format';
 
-        if (strlen($this->post['release_year']) != 4)
-            return false;
-
-        return true;
+        return '';
     }
     
     function InsertNewBook($db, $genres) {
