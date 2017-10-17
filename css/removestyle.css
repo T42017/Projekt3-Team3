@@ -1,0 +1,133 @@
+#header{
+    margin-top: 5%;
+    background-color: #3B8686;
+    padding: 2%;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#sok {
+    height: 38px;
+    width: 40px;
+    margin-left: 5.5px;
+    margin-top: -1px;
+    margin-bottom: 4px;
+}
+
+.main-search {
+    width: 300px;
+    height: 38px;
+    display: inline;
+}
+
+.main-search input {
+    width: 220px;
+    margin-left: 5.5px;
+    display: inline;
+}
+
+.main-search button {
+    margin-top: -1px;
+    display: inline;
+    
+}
+
+#catalog{
+    background-color: white;
+}
+
+#categories{
+    background-color: #79BD9A;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: 1px;
+}
+
+#footer{
+    background-color: #0B486B;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-width: 1px;
+}
+
+.controls{
+    background-color: #A8DBA8;
+    border-style: solid;
+    border-width: 1px;
+}
+.fourofour{
+    font-size: 80px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.bold{
+    font-weight: bold;
+}
+
+body{
+    background-color: #CFF09E;
+}
+
+.genres{
+    padding-top: 1%;
+}
+
+.title{
+    margin: 1%;
+    font-size: 20px;
+    float: left;
+}
+
+.genre{
+    font-size: 12px;
+}
+
+.author{
+    font-size: 14px;
+    margin: auto;
+}
+
+.icons{
+    margin-left: 0px;
+    float: left;
+}
+
+#next{
+    float: right;
+    margin:1%;
+}
+
+#previous{
+    float: left;
+    margin:1%;
+}
+
+.catbuttons{
+    float: left;
+    margin-left: 5.5px;
+    margin-right: 5.5px;
+}
+.errortext{
+    margin-bottom: 5%;
+    font-size: 24px;
+}
+
+.btn-outlined {
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+            transition: all 0.3s;
+}
+
+.btn-outlined.btn-primary {
+    background: none;
+    border: 1px solid;
+    border-color: black;
+    color: black;
+}
+
+.btn-outlined.btn-primary:hover,
+.btn-outlined.btn-primary:active {
+    color: #FFF;
+    background: #0B486B;
+    border-color: #0B486B:
+}
