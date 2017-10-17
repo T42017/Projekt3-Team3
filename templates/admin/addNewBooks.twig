@@ -23,7 +23,6 @@
         </div>
         
         <div id="content">
-            
             {% if not info is empty  %}
                 <h3 id="info" class="success">{{ info }}</h3>
             {% endif %}
@@ -39,7 +38,7 @@
                 </div>
                 <div class="col-centered">
                     <label for="ISBN" class="text">Bokens ISBN: (nummer)</label>
-                    <input type="text" class="form-control" name="ISBN" id="isbn" minlength="10" maxlength="20" pattern="^[0-9\-]$" required autofocus>
+                    <input type="text" class="form-control" name="ISBN" id="isbn" minlength="10" maxlength="20" pattern="^[0-9\-]{10, 20}$" required autofocus>
                 </div>
                 <div class="col-centered">
                     <label for="title" class="text">Titel:</label>
@@ -51,7 +50,14 @@
                 </div>
                 <div class="col-centered">
                     <label for="category" class="text">Genre:</label>
-                    <input type="text" class="form-control" name="category" id="category" maxlength="50">
+                    
+                    {% for genre  in genres %}
+                        <div class="genre">
+                            <label for="genres[]">{{ genre.name }}</label>
+                            <input type="checkbox" class="form-control checkbox" name="genres[]" value="{{ genre.name }}">
+                        </div>
+                    {% endfor %}
+                    
                 </div>
                     <div class="col-centered">
                     <label for="release_year" class="text">Utgivningsår:</label>
