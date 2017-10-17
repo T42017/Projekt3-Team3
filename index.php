@@ -21,6 +21,7 @@
             require_once 'php/lamnain.php';
             DoStuff($twig);
         }
+        else if ($adminFile === "tabort"){
             require_once 'php/tabort.php';
             DoStuff($twig);
         }

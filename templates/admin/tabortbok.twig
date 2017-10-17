@@ -46,6 +46,7 @@
         <div class="row" id="catalog">
             {% for book in books %}
             <div class="col-lg-12 borders">
+                <button type="button" id="remove" class="btn btn-default btn-sm">Ta bort</button>
                 <p class="title">{{ book.title }}</p>
                 <p class="title text-center">{{ book.ISBN }}</p>
             </div>
