@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/bookinfostyle.css">
+    <link rel="stylesheet" href="/projekt3/css/bookinfostyle.css">
       
   </head>
   <body>
@@ -33,11 +33,11 @@
               </div>
             </form>
         </div>
-        <div class="row controls"> 
+        <div class="row controls content"> 
             <div class="col-lg-4">
                 <img src="/projekt3/img/index.png" class="img-responsive images" alt="book image">
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <p class="title">{{ book.title }}</p>
                 <p class="author">{{ book.author }}</p>
                 <p class="author">Släpptes: {{ book.release_year }}</p>
@@ -45,8 +45,14 @@
                 <p class="author">Kategorier: {{ book.genres }}</p>
                 <p class="author">ISBN: {{ book.ISBN }}</p>
             </div>
-            <div class="col-lg-4">
-
+            <div id="isLoaned">
+                <p>
+                    {% if is_loaned %}
+                        utlånad
+                    {% else %}
+                        inte utlånad
+                    {% endif %}
+                </p>
             </div>
         </div>
 

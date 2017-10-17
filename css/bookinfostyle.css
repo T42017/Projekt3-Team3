@@ -1,71 +1,98 @@
-#header{
+#header {
     margin-top: 5%;
     background-color: #3B8686;
     padding: 2%;
     border-style: solid;
     border-width: 1px;
 }
-#catalog{
+
+#catalog {
     background-color: white;
 }
+
 #categories{
     background-color: #79BD9A;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
 }
-#footer{
+
+.content {
+    position: relative;
+}
+
+#isLoaned {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 2%;
+}
+
+#footer {
     background-color: #0B486B;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
 }
-.controls{
+
+.controls {
     background-color: #A8DBA8;
     border-style: solid;
     border-width: 1px;
 }
-.bold{
+
+.bold {
     font-weight: bold;
 }
-.images{
+
+.images {
     margin-top: 5%;
     margin-bottom: 5%;
 }
-body{
+
+body {
     background-color: #CFF09E;
 }
-.genres{
+
+.genres {
     padding-top: 1%;
 }
-.title{
+
+.title {
     margin: 1%;
     font-size: 24px;
 }
-.genre{
+
+.genre {
     margin: 2%;
     font-size: 12px;
 }
-.author{
+
+.author {
     font-size: 16px;
     margin: 1%;
 }
-.icons{
+
+.icons {
     margin-left: 0px;
     float: left;
 }
+
 .img-responsive { 
     width:100%;
 }
-#next{
+
+#next {
     float: right;
     margin:1%;
 }
-#previous{
+
+#previous {
     float: left;
     margin:1%;
 }
-.catbuttons{
+
+.catbuttons {
     float: left;
     margin-left: 10px;
     margin-right: 10px;
