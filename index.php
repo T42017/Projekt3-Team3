@@ -17,7 +17,8 @@
             require_once 'php/lamnain.php';
             DoStuff($twig);
         } else if ($adminFile === "tabort") {
-            echo $twig->render('admin/tabort.twig', array());
+            require_once 'php/tabort.php';
+            DoStuff($twig);
         } else {
             echo $twig->render('admin/admin.twig', array());
         }
