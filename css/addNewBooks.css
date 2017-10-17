@@ -29,8 +29,8 @@
 .genre {
     display: block;
     margin-top: 10px;
-    border-bottom-style: solid;
-    border-bottom: thick color #000000;
+    border-bottom: thick solid #000;
+    border-bottom-width: 2px;
 }
 
 .error {
