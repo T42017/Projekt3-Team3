@@ -13,11 +13,13 @@
   <body>
 
     <div class="container">
-        <div class="row" id="header">
-            <div class="col">
+        <a href="/projekt3/admin" class="nav-link">
+            <div id="header">
+                <div class="col">
                 <a href="/projekt3/admin" class="nav-link"><h1 class="text-center bold">Bibliotek</h1></a>
+                </div>
             </div>
-            </div>
+        </a>
         
         <div class="row controls">
             <div class="col">
@@ -46,13 +48,14 @@
         <div class="row" id="catalog">
             <table>
                 <tr>
+                    <th></th>
                     <th>Title</th>
                     <th>ISBN</th>
                     <th>Remove</th>
                 </tr>
-
                 {% for book in books %}
                     <tr>
+                        <th>{{ loop.index }}</th>
                         <th><p class="title">{{ book.title }}</p></th>
                         <th><p class="title text-center">{{ book.ISBN }}</p></th>
                         <th>

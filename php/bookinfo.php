@@ -3,7 +3,7 @@ function DoStuff($twig) {
     $isbn = GetPermaLink(2);
     
     if (empty($isbn)) {
-        echo "<center><h1>No book selected</h1></center>";
+        header('Location: /projekt3/fourofour');
         exit();
     }
     
@@ -11,11 +11,10 @@ function DoStuff($twig) {
     
     $bookInfo = new bookInfo();
     $bookInfo->GetBookFromIsbn($db, $isbn);
-
+    
     if (count($bookInfo->book) === 0) {
-        echo '<link rel="stylesheet" href="/projekt3/css/style.css">';
-        echo '<center><h1>Book not found in database</h1></center>';
-        exit();
+        header('Location: /projekt3/fourofour');
+        exit;
     }
     
     $bookInfo->Render($twig);
@@ -35,8 +34,10 @@ class bookInfo {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        if (count($row) <= 0)
+        if (count($row) <= 1) {
+            $this->book = array();
             return array();
+        }
         
         $genres = $this->GetGenresFromBook($db, $row["ISBN"]);
         
