@@ -18,18 +18,25 @@
                 <a href="/projekt3/" class="nav-link"><h1 class="text-center bold">Bibliotek</h1></a>
             </div>
         </div>
-        
+         
         <div class="row genres" id="categories">
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Fantasy</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Skräck</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Drama</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Komedi</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Biografi</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Äventyr</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Historia</a></p>
-            <p><a href="#" class="btn btn-outlined btn-primary catbuttons">Sci-fi</a></p>
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=2&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Fantasy</a></p>
             
-        <form class= "search" method="get" action="/projekt3/hem/sida/1">
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=5&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Skräck</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=3&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Drama</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=6&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Komedi</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=7&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Biografi</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=8&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Äventyr</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=9&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Historia</a></p>
+            
+            <p><a href="/projekt3/hem/sida/{{sida}}/?categories=10&search={{search}}" class="btn btn-outlined btn-primary catbuttons">Sci-fi</a></p>
+            
+            <form class= "search" method="get" action="/projekt3/hem/sida/1/?categories{{categories}}">
                 <div class="form-group main-search">
                     <input type="search" name="search" placeholder="Sök" class="form-control" id="usr">
                     <button type="submit" value="Submit" id="sok" class="btn btn-default btn-sm">Sök</button>
@@ -40,7 +47,7 @@
         <div class="row controls">
             <div class="col">
                 <a href="{% if sida > 1 %}
-                            /projekt3/hem/sida/{{ sida-1 }}/?search={{search}}
+                            /projekt3/hem/sida/{{sida-1}}/?categories={{categories}}&search={{search}}
                          {% else %}
                             #
                          {% endif %}
@@ -51,7 +58,7 @@
             
             <div class="col">
                 <a href="{% if canGoNextPage %}
-                            /projekt3/hem/sida/{{ sida+1 }}/?search={{search}}
+                            /projekt3/hem/sida/{{sida+1}}/?categories={{categories}}&search={{search}}
                          {% else %}
                             #
                          {% endif %}
@@ -67,7 +74,7 @@
                 <img src="/projekt3/img/index.png" class="img-responsive icons" alt="book image">
                 <p class="title">{{ book.title }}</p>
                 <p class="author">{{ book.author }}</p><br/>
-                <p class="genre">{{ book.category }}</p>
+                <p class="genre">{{ book.genres }}</p>
             </a></div>
             {% endfor %}
         </div>
@@ -75,7 +82,7 @@
         <div class="row controls">
             <div class="col">
                 <a href="{% if sida > 1 %}
-                            /projekt3/home/sida/{{ sida-1 }}/?search={{search}}
+                            /projekt3/hem/sida/{{sida-1}}/?categories={{categories}}&search={{search}}
                          {% else %}
                             #
                          {% endif %}
@@ -86,7 +93,7 @@
             
             <div class="col">
                 <a href="{% if canGoNextPage %}
-                            /projekt3/home/sida/{{ sida+1 }}/?search={{search}}
+                            /projekt3/hem/sida/{{sida+1}}/?categories={{categories}}&search={{search}}
                          {% else %}
                             #
                          {% endif %}
