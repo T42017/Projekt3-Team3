@@ -5,9 +5,11 @@
     border-width: 1px;
     margin-top: 5%;
 }
+
 #catalog{
     background-color: white;
 }
+
 #categories{
     background-color: #79BD9A;
     border-left-style: solid;
@@ -15,61 +17,76 @@
     border-bottom-style: solid;
     border-width: 1px;
 }
+
 #footer{
     background-color: #0B486B;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 1px;
 }
+
 .controls{
     background-color: #A8DBA8;
     border-style: solid;
     border-width: 1px;
 }
+
 .filler{
     height: 5%;
 }
+
 .bold{
     font-weight: bold;
 }
+
 body{
     background-color: #CFF09E;
 }
+
 .genres{
     padding-top: 1%;
 }
+
 .title{
     margin: 1%;
     font-size: 24px;
 }
+
 .genre{
     font-size: 12px;
 }
+
 .author{
     font-size: 12px;
     margin-right: 5%;
     float: left;
 }
+
 .icons{
     margin-left: 0px;
     float: left;
 }
+
 #next{
     float: right;
     margin:1%;
 }
+
 #previous{
     float: left;
     margin:1%;
 }
+
 #buttontext{
     font-size: 40px;
 }
+
 .catbuttons{
     float: left;
     margin-left: 10px;
     margin-right: 10px;
 }
+
 .adminbuttons{
     margin-top: 10%;
     padding:1%;
@@ -87,6 +104,7 @@ body{
     border-color: black;
     color: black;
 }
+
 .btn-outlined.btn-primary:hover,
 .btn-outlined.btn-primary:active {
     color: #FFF;
@@ -99,16 +117,19 @@ a.nav-link:link
    color: black;
    text-decoration: none;
 }
+
 a.nav-link:visited
 {
    color: black;
    text-decoration: none;
 }
+
 a.nav-link:hover
 {
    color: black;
    text-decoration: none;
 }
+
 a.nav-link:active
 {
    color: black;
