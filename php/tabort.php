@@ -1,11 +1,11 @@
 <?php
 function DoStuff($twig) {
-    $shouldSelectSida = GetPermaLink(2);
+    $shouldSelectSida = GetPermaLink(3);
     $sida = 1;
     $pageSize = 32;
 
     if ($shouldSelectSida === 'sida') {
-         $sida = GetPermaLink(3);
+         $sida = GetPermaLink(4);
     }
     
     $listStart = ($sida - 1) * $pageSize;
@@ -14,8 +14,18 @@ function DoStuff($twig) {
         echo 'Index out of range';
         exit;
     }
-
+    
     $db = ConnectToDatabase();
+    
+    if (ValidateInput()) {
+        try {
+            RemoveBook($db, GetBookId($db, $_POST['isbn']));
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+            echo $error;
+            exit;
+        }
+    }
     
     $goNextPage = false;
     if ($listStart + $pageSize < GetMaxBooks($db))
@@ -31,7 +41,7 @@ function GetBooks($db, $listStart, $pageSize) {
     $stmt->execute();
 
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   
-        $book[] = array(
+        $books[] = array(
             'title'=> $row["title"],
             'ISBN'=> $row["ISBN"],
             'author'=> $row["author"],
@@ -40,7 +50,20 @@ function GetBooks($db, $listStart, $pageSize) {
             'language' => $row["language"]
         );
     }
-    return isset($book) ? $book : null;
+    return isset($books) ? $books : null;
+}
+
+function GetBookId($db, $isbn) {
+    $stmt = $db->prepare("SELECT id FROM books WHERE ISBN = :isbn");
+
+    $stmt->bindParam(':isbn', $isbn);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (count($result) > 0)
+        return $result['id'];
+    else
+        return null;
 }
 
 function GetMaxBooks($db) {
@@ -48,5 +71,19 @@ function GetMaxBooks($db) {
     $row = $stmt->fetch();
 
     return $row[0];
+}
+
+function RemoveBook($db, $id) {
+    $stmt = $db->prepare('DELETE FROM books WHERE id = :id;
+                          DELETE FROM books_genre WHERE book_id = :id;');
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+}
+
+function ValidateInput() {
+    if (!isset($_POST['isbn']))
+        return false;
+    
+    return true;
 }
 ?>

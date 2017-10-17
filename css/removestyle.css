@@ -14,6 +14,20 @@
     margin-bottom: 4px;
 }
 
+table {
+    width: 96%;
+    margin: 2%;
+}
+
+tr:nth-child(even) {
+    background: lightgray;
+}
+
+.removeButton {
+    background: grey;
+    color: white;
+}
+
 .main-search {
     width: 300px;
     height: 38px;
@@ -55,12 +69,14 @@
     border-style: solid;
     border-width: 1px;
 }
+
 .fourofour{
     font-size: 80px;
     margin-top: 5%;
     margin-bottom: 5%;
 }
-.bold{
+
+.bold {
     font-weight: bold;
 }
 
