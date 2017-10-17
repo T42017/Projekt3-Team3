@@ -1,33 +1,33 @@
 <?php
     
 function DoStuff($twig) {
-    $lanaUt = new LanaUt();
+    $lamnaIn = new LamnaIn();
     
     if (isset($_POST['submit'])) {
-        $lanaUt->SetPost($_POST);
+        $lamnaIn->SetPost($_POST);
         
-        if (!$lanaUt->ValidateInput()) {
+        if (!$lamnaIn->ValidateInput()) {
             echo 'Validation error';
             exit;
         }
 
         $db = ConnectToDatabase();
 
-        if ($lanaUt->IsBookLoaned($db)) {
+        if ($lamnaIn->IsBookLoaned($db)) {
             
-            $lanaUt->ReturnBook($db);
+            $lamnaIn->ReturnBook($db);
             
-            $lanaUt->info = 'Boken är nu inlämmnad!';
+            $lamnaIn->info = 'Boken är nu inlämmnad!';
             
         } else {
-            $lanaUt->error = 'Boken är inte utlånad!';
+            $lamnaIn->error = 'Boken är inte utlånad!';
         }
     }
     
-    $lanaUt->Render($twig);
+    $lamnaIn->Render($twig);
 }
 
-class LanaUt {
+class LamnaIn {
     public $info = '';
     public $error = '';
     public $post;
