@@ -28,7 +28,7 @@ class bookInfo {
     }
 
     function GetBookFromIsbn($db, $isbn) {
-        $stmt = $db->prepare("SELECT title, ISBN, author, release_year, publisher, language, user_id IS NULL AS 'isLoaned' FROM books WHERE ISBN = :isbn");
+        $stmt = $db->prepare("SELECT title, ISBN, author, release_year, publisher, language, user_id IS NOT NULL AS 'isLoaned' FROM books WHERE ISBN = :isbn");
         $stmt->bindParam(':isbn', $isbn);
         $stmt->execute();
 
@@ -46,7 +46,7 @@ class bookInfo {
             'ISBN'=> $row["ISBN"],
             'author'=> $row["author"],
             'genres' => $genres,
-            'is_loaned' => $row['isLoaned'],
+            'isLoaned' => $row['isLoaned'],
             'release_year'=> $row["release_year"],
             'publisher'=> $row["publisher"],
             'language' => $row["language"]

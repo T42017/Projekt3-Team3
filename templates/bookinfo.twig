@@ -46,13 +46,11 @@
                 <p class="author">ISBN: {{ book.ISBN }}</p>
             </div>
             <div id="isLoaned">
-                <p>
-                    {% if is_loaned %}
-                        utlånad
-                    {% else %}
-                        inte utlånad
-                    {% endif %}
-                </p>
+                {% if book.isLoaned %}
+                    <p>utlånad</p>
+                {% else %}
+                    <p>inte utlånad</p>
+                {% endif %}
             </div>
         </div>
 
