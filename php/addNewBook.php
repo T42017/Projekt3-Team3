@@ -59,7 +59,7 @@ class Site {
         $stmt->bindParam(':publisher', $this->post['publisher']);
         $stmt->bindParam(':language', $this->post['language']);
         $stmt->execute();
-
+        
         return $stmt;
     }
 
