@@ -13,48 +13,50 @@
     <script type="application/javascript" src="/projekt3/js/popper.min.js"></script>
     <script type="application/javascript" src="/projekt3/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="/projekt3/js/isbnSearch.js"></script>
+      
   </head>
-    
   <body>
+      
     <div class="container">
-        <a href="/projekt3/admin" class="nav-link"><div id="header">
-            <div class="col">
-                <h1 class="text-center bold">Bibliotek</h1>
+        <a href="/projekt3/admin" class="nav-link">
+            <div id="header">
+                <div class="col">
+                    <h1 class="text-center bold">Bibliotek</h1>
+                </div>
             </div>
-        </div></a>
+        </a>
         
         <div id="content">
             {% if not info is empty  %}
                 <h3 id="info" class="success">{{ info }}</h3>
             {% endif %}
-            
+
             {% if not error is empty  %}
                 <h3 id="info" class="error">{{ error }}</h3>
             {% endif %}
-            
+
             <form method="post">
                 <div id="search">
                     <img id="loadingImg" src="/projekt3/img/loading.gif"/>
                     Söker efter information om boken
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="ISBN" class="text">Bokens ISBN: (nummer)</label>
                     <input type="text" class="form-control" name="ISBN" id="isbn" minlength="10" maxlength="20" pattern="^[0-9\-]{10, 20}$" required autofocus>
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="title" class="text">Titel:</label>
                     <input type="text" class="form-control" name="title" id="title" minlength="2" maxlength="50" required>
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="author" class="text">Författare:</label>
                     <input type="text" class="form-control" name="author" id="author" maxlength="50">
                 </div>
-                
+
                 <div class="col-centered">
-                    <label for="category" class="text">Genre:</label>
                     
                     {% for genre  in genres %}
                         <div class="genre">
@@ -62,24 +64,24 @@
                             <input type="checkbox" class="form-control checkbox" name="genres[]" value="{{ genre.name }}">
                         </div>
                     {% endfor %}
-                    
+
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="release_year" class="text">Utgivningsår:</label>
                     <input type="text" class="form-control" name="release_year" id="year" maxlength="4">
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="publisher" class="text">Förlag:</label>
                     <input type="text" class="form-control" name="publisher" id="publisher" maxlength="50">
                 </div>
-                
+
                 <div class="col-centered">
                     <label for="language" class="text">Språk:</label>
                     <input type="text" class="form-control" name="language" id="language" maxlength="50">
                 </div>
-                
+
                 <div id="next">
                     <button type="submit" name="submit" class="btn btn-default btn-sm">Lägg till</button>
                 </div>
