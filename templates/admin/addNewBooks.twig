@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,17 +16,19 @@
     <script type="application/javascript" src="/projekt3/js/isbnSearch.js"></script>
     <script>
         $(document).ready(function() {
-            $(window).keydown(function(event){
-                if(event.keyCode == 13) {
-                  event.preventDefault();
-                  return false;
+            $(window).keydown(function(event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                    return false;
                 }
             });
         });
+
     </script>
-  </head>
-  <body>
-      
+</head>
+
+<body>
+
     <div class="container">
         <a href="/projekt3/admin" class="nav-link">
             <div id="header">
@@ -34,19 +37,16 @@
                 </div>
             </div>
         </a>
-        
-        {% if not info is empty  %}
-            <h3 id="info" class="success">{{ info }}</h3>
-        {% endif %}
 
-        {% if not error is empty  %}
-            <h3 id="info" class="error">{{ error }}</h3>
+        {% if not info is empty %}
+        <h3 id="info" class="success">{{ info }}</h3>
+        {% endif %} {% if not error is empty %}
+        <h3 id="info" class="error">{{ error }}</h3>
         {% endif %}
 
         <form method="post">
             <div id="search">
-                <img id="loadingImg" src="/projekt3/img/loading.gif"/>
-                Söker efter information om boken
+                <img id="loadingImg" src="/projekt3/img/loading.gif" /> Söker efter information om boken
             </div>
 
             <div class="col-centered">
@@ -66,11 +66,11 @@
 
             <div class="col-centered">
 
-                {% for genre  in genres %}
-                    <div class="genre">
-                        <label for="genres[]">{{ genre.name }}</label>
-                        <input type="checkbox" class="form-control checkbox" name="genres[]" value="{{ genre.name }}">
-                    </div>
+                {% for genre in genres %}
+                <div class="genre">
+                    <label for="genres[]">{{ genre.name }}</label>
+                    <input type="checkbox" class="form-control checkbox" name="genres[]" value="{{ genre.name }}">
+                </div>
                 {% endfor %}
 
             </div>
@@ -95,5 +95,6 @@
             </div>
         </form>
     </div>
-  </body>
+</body>
+
 </html>
