@@ -27,10 +27,7 @@ function DoStuff($twig) {
     if(isset($_GET['categories']))
     {
         $categories =$_GET['categories'];
-    }
-    
-    else
-    {
+    } else {
         $categories = '';
     }
     
@@ -38,10 +35,7 @@ function DoStuff($twig) {
     {
         $searchDb = '%' . $_GET['search'] . '%';
         $search =$_GET['search'];
-    }
-    
-    else
-    {
+    } else {
         $searchDb = '%';
         $search = '';
     }
@@ -78,9 +72,7 @@ function GetBooks($db, $listStart, $pageSize, $search, $cat) {
         $stmt->bindParam(':cat', $cat, PDO::PARAM_INT);
         $stmt->execute();
         
-    }
-    else
-    {
+    } else {
         $stmt = $db->prepare("SELECT * FROM books WHERE title LIKE :search ORDER BY title ASC LIMIT :start, :pageSize ");
         $stmt->bindParam(':start', $listStart, PDO::PARAM_INT);
         $stmt->bindParam(':pageSize', $pageSize, PDO::PARAM_INT);
@@ -96,7 +88,8 @@ function GetBooks($db, $listStart, $pageSize, $search, $cat) {
             'genres'=> GetGenresFromBook($db, $row["ISBN"]),
             'release_year'=> $row["release_year"],
             'publisher'=> $row["publisher"],
-            'language' => $row["language"]
+            'language' => $row["language"],
+            'image' => $row['image_location']
         );
     }
     return isset($book) ? $book : null;

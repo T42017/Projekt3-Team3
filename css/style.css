@@ -6,6 +6,10 @@
     border-width: 1px;
 }
 
+.imageCover {
+    width: 50%;
+}
+
 #sok {
     height: 38px;
     width: 40px;

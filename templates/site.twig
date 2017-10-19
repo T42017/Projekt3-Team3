@@ -74,12 +74,14 @@
 
         <div class="row" id="catalog">
             {% for book in books %}
-            <div class="col-lg-4"><a href="/projekt3/bookinfo/{{ book.ISBN }}" class="nav-link">
-                <img src="/projekt3/img/index.png" class="img-responsive icons" alt="book image">
-                <p class="title">{{ book.title }}</p>
-                <p class="author">{{ book.author }}</p><br/>
-                <p class="genre">{{ book.genres }}</p>
-            </a></div>
+            <div class="col-lg-4">
+                <a href="/projekt3/bookinfo/{{ book.ISBN }}" class="nav-link">
+                    <img src="/projekt3/{{  book.image }}" class="img-responsive icons imageCover" alt="book image">
+                    <p class="title">{{ book.title }}</p>
+                    <p class="author">{{ book.author }}</p><br/>
+                    <p class="genre">{{ book.genres }}</p>
+                </a>
+            </div>
             {% endfor %}
         </div>
 

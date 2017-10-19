@@ -11,6 +11,9 @@ function DoStuff($twig) {
             $site->error = $valid;
         } else {
             try {
+                if ($site->hasFileToUpload)
+                    $site->UploadFile();
+                
                 $genres = array();
                 if (isset($_POST['genres']))
                     $genres = $_POST['genres'];
@@ -36,6 +39,7 @@ class Site {
     public $error = '';
     public $genres;
     public $post;
+    public $hasFileToUpload = true;
 
     function ValidateInput() {
         
@@ -48,13 +52,47 @@ class Site {
         
         if (empty($this->post['release_year']) || !preg_match('/^[0-9]{4}$/', $this->post['release_year']))
             return 'Utgivningsåret var i fel format';
+        
+        if (!isset($_FILES["fileToUpload"]) || empty($_FILES["fileToUpload"]["name"]))
+            $this->hasFileToUpload = false;
+        
+        if ($this->hasFileToUpload) {
+            $target_file = 'uploads/' . basename($_FILES["fileToUpload"]["name"]);
+            $temp_file = 'uploads/' . basename($_FILES["fileToUpload"]["tmp_name"]);
+            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+            
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+            if($check === false) 
+                return 'File is not an image';
+
+            // Check if file already exists
+            if (file_exists($temp_file))
+                return "Sorry, file already exists.";
+
+             // Check file size
+            if ($_FILES["fileToUpload"]["size"] > 500000)
+                return "Sorry, your file is too large";
+        }
 
         return '';
     }
     
+    function UploadFile() {
+        $imageFileType = pathinfo(basename($_FILES["fileToUpload"]["name"]), PATHINFO_EXTENSION);
+        $target_file = 'uploads/' . str_replace('.tmp', '.' . $imageFileType, basename($_FILES["fileToUpload"]["tmp_name"]));
+        
+        $this->post['image_location'] = $target_file;
+        
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+    
     function InsertNewBook($db, $genres) {
-        $stmt = $db->prepare("INSERT INTO books (title, ISBN, author, release_year, publisher, language) 
-                                value (:title, :isbn, :author, :release_year, :publisher, :language)");
+        $stmt = $db->prepare("INSERT INTO books (title, ISBN, author, release_year, publisher, language, image_location) 
+                                value (:title, :isbn, :author, :release_year, :publisher, :language, :image)");
 
         $stmt->bindParam(':title', $this->post['title']);
         $stmt->bindParam(':isbn', $this->post['ISBN']);
@@ -62,6 +100,7 @@ class Site {
         $stmt->bindParam(':release_year', $this->post['release_year']);
         $stmt->bindParam(':publisher', $this->post['publisher']);
         $stmt->bindParam(':language', $this->post['language']);
+        $stmt->bindParam(':image', $this->post['image_location']);
         $stmt->execute();
         
         $bookId = $this->GetBookId($db, $this->post['ISBN']);

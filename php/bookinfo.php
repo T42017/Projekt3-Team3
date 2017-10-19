@@ -28,7 +28,7 @@ class bookInfo {
     }
 
     function GetBookFromIsbn($db, $isbn) {
-        $stmt = $db->prepare("SELECT title, ISBN, author, release_year, publisher, language, user_id IS NOT NULL AS 'isLoaned' FROM books WHERE ISBN = :isbn");
+        $stmt = $db->prepare("SELECT title, ISBN, author, release_year, publisher, language, user_id IS NOT NULL AS 'isLoaned', image_location FROM books WHERE ISBN = :isbn");
         $stmt->bindParam(':isbn', $isbn);
         $stmt->execute();
 
@@ -42,14 +42,15 @@ class bookInfo {
         $genres = $this->GetGenresFromBook($db, $row["ISBN"]);
         
         $book = array(
-            'title'=> $row["title"],
-            'ISBN'=> $row["ISBN"],
-            'author'=> $row["author"],
+            'title'=> $row['title'],
+            'ISBN'=> $row['ISBN'],
+            'author'=> $row['author'],
             'genres' => $genres,
             'isLoaned' => $row['isLoaned'],
-            'release_year'=> $row["release_year"],
-            'publisher'=> $row["publisher"],
-            'language' => $row["language"]
+            'release_year'=> $row['release_year'],
+            'publisher'=> $row['publisher'],
+            'language' => $row['language'],
+            'image' => $row['image_location']
         );
         
         $this->book = $book;
