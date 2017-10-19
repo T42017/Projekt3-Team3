@@ -60,6 +60,16 @@
                 </a>
             </div>
             
+            <div class="col allPageNavButtons">
+            {% for i in 1..maxPages %}
+                <a href="/projekt3/hem/sida/{{ loop.index }}/?categories={{categories}}&search={{search}}" class="pageNavButton">
+                    
+                        {{ loop.index }}
+                    
+                </a>
+            {% endfor %}
+            </div>
+            
             <div class="col">
                 <a href="{% if page != maxPages %}
                             /projekt3/hem/sida/{{page+1}}/?categories={{categories}}&search={{search}}

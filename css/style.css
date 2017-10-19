@@ -96,14 +96,23 @@ body{
     float: left;
 }
 
-#next{
+#next {
     float: right;
-    margin:1%;
+    margin: 1%;
 }
 
-#previous{
+#previous {
     float: left;
-    margin:1%;
+    margin: 1%;
+}
+
+.pageNavButton {
+    margin: 1%;
+}
+
+.allPageNavButtons {
+    margin: auto;
+    text-align: center;
 }
 
 .catbuttons{
