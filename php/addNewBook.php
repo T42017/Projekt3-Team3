@@ -83,9 +83,8 @@ class Site {
         
         $this->post['image_location'] = $target_file;
         
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        if (!move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
             echo "Sorry, there was an error uploading your file.";
-        }
     }
     
     function InsertNewBook($db, $genres) {
