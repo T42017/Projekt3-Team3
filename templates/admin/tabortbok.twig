@@ -52,9 +52,9 @@
             <table>
                 <tr>
                     <th></th>
-                    <th>Title</th>
+                    <th>Titel</th>
                     <th>ISBN</th>
-                    <th>Remove</th>
+                    <th>Ta bort</th>
                 </tr>
                 {% for book in books %}
                 <tr>
@@ -69,7 +69,7 @@
                     </th>
                     <th>
                         <form method="post">
-                            <button type="submit" name="isbn" value="{{ book.ISBN }}" class="btn btn-default btn-sm removeButton">Ta bort</button>
+                            <button type="submit" name="isbn" value="{{ book.ISBN }}" class="btn btn-default btn-sm removeButton">Radera</button>
                         </form>
                     </th>
                 </tr>
