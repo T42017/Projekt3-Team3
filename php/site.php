@@ -2,7 +2,7 @@
 function DoStuff($twig) {
     $shouldSelectSida = GetPermaLink(2);
     $sida = 1;
-    $pageSize = 18;
+    $pageSize = 36;
     
     if ($shouldSelectSida === 'sida') {
         $sida = GetPermaLink(3);

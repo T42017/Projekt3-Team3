@@ -13,7 +13,19 @@
     margin-top: -1px;
     margin-bottom: 4px;
 }
+body{
+    /* The image used */
+    background-image: url('/projekt3/img/library.jpg');
 
+    /* Full height */
+    height: 100%; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .main-search {
     width: 300px;
     height: 38px;
@@ -29,13 +41,25 @@
 .main-search button {
     margin-top: -1px;
     display: inline;
+    display: inline;
     
 }
+.navbartitle{
+    color: #0EB3F1;
 
-#catalog{
-    background-color: white;
 }
+.margintop{
+    margin-top: 10%;
+}
+.catalog{
+    background-color: white;
+        margin-top: 10%;
 
+}
+a{
+    padding: 0;
+    margin: 0;
+}
 #categories{
     background-color: #79BD9A;
     border-left-style: solid;
@@ -51,8 +75,9 @@
 }
 
 .controls{
-    background-color: #A8DBA8;
+    background-color: white;
     border-style: solid;
+    border-color: #0EB3F1;
     border-width: 1px;
 }
 .fourofour{
@@ -64,8 +89,9 @@
     font-weight: bold;
 }
 
-body{
-    background-color: #CFF09E;
+
+body, html {
+    height: 100%;
 }
 
 .genres{
@@ -73,23 +99,22 @@ body{
 }
 
 .title{
-    margin: 1%;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 .genre{
+    float: bottom;
     font-size: 12px;
 }
 
 .author{
-    font-size: 14px;
-
+    font-size: 12px;
+    margin-top: 1%;
     margin: auto;
 }
 
 .icons{
     margin-left: 0px;
-    float: left;
 }
 
 #next{
